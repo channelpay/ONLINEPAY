@@ -1,0 +1,20 @@
+server:
+  port: 8100
+          
+eureka:
+  instance:
+    hostname: 127.0.0.1
+  client:
+    serviceUrl:
+          defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/  
+    register-with-eureka: false
+    fetch-registry: false
+# 配置安全架构
+security:   
+  basic:
+    enabled: true
+  user:
+    name: admin
+    password: 123123    
+ 
+#${security.user.name}:${security.user.password}@
