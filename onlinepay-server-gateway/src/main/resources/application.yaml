@@ -1,0 +1,35 @@
+server:
+  port: 9513
+
+spring:
+ application:
+   name: gatewayServer
+ cloud:
+  gateway:
+    discovery:
+      locator:
+        enable: false   #表明gateway开启服务注册和发现的功能，并且spring cloud gateway自动根据服务发现为每一个服务创建了一个router，这个router将以服务名开头的请求路径转发到对应的服务。
+        lowerCaseServiceId: true  # 将服务名称转为小写
+    routes:
+    - id: eurekaClinte
+      uri: lb://eurekaClinte
+      predicates:
+        - Path=/online/**
+      filters:
+        - StripPrefix=1  
+# 指向服务注册中心              
+eureka:
+  instance:
+    instance-id: gatewayServer
+    appname: {spring.application.name}
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8100/eureka/  
+    instance:
+      preferIpAddress: true
+
+
+
+   
+    
+#${security.user.name}:${security.user.password}@
