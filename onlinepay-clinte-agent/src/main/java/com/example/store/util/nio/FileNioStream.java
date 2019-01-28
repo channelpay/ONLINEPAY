@@ -21,7 +21,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import javax.swing.Box.Filler;
 import ch.qos.logback.core.util.TimeUtil;
-import io.micrometer.core.instrument.util.TimeUtils;
+/*import io.micrometer.core.instrument.util.TimeUtils;*/
 
 /**
  * 简单学习NIO
@@ -226,7 +226,7 @@ public class FileNioStream {
             if (socketChannel.finishConnect()) {
                 int i = 0;
                 while (true) {
-                    TimeUtils.secondsToUnit(12, TimeUnit.SECONDS);
+                    // TimeUtils.secondsToUnit(12, TimeUnit.SECONDS);
                     byteBuffer.clear();
                     String info = "这个简单信息是要发给你的：";
                     byteBuffer.put(info.getBytes());
