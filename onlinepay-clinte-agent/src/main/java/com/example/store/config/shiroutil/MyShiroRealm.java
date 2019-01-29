@@ -12,10 +12,12 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.example.store.model.agent.AgentInfo;
+import com.example.store.model.agent.AgentParam;
 import com.example.store.model.shiro.Permission;
 import com.example.store.model.shiro.Role;
 import com.example.store.model.shiro.User;
-import com.example.store.service.shiro.ILoginService;
+import com.example.store.service.agent.IAgentLoginService;
 
 /**
  * 设计角色以及权限接口
@@ -27,7 +29,7 @@ public class MyShiroRealm extends AuthorizingRealm {
 
     // 用于用户查询
     @Autowired
-    private ILoginService loginService;
+    private IAgentLoginService loginService;
 
     // 角色权限和对应权限添加
     @Override
@@ -35,17 +37,15 @@ public class MyShiroRealm extends AuthorizingRealm {
         // 获取登录用户名
         String name = (String) principalCollection.getPrimaryPrincipal();
         // 查询用户名称
-        User user = loginService.findUserName(name);
+        AgentParam agentParam = loginService.findUserName(name);
         // 添加角色和权限
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
-        for (Role role : user.getRoles()) {
-            // 添加角色
-            simpleAuthorizationInfo.addRole(role.getRoleName());
-            for (Permission permission : role.getPermissions()) {
-                // 添加权限
-                simpleAuthorizationInfo.addStringPermission(permission.getPermission());
-            }
-        }
+        /*
+         * for (Role role : user.getRoles()) { // 添加角色
+         * simpleAuthorizationInfo.addRole(role.getRoleName()); for (Permission permission :
+         * role.getPermissions()) { // 添加权限
+         * simpleAuthorizationInfo.addStringPermission(permission.getPermission()); } }
+         */
         return simpleAuthorizationInfo;
     }
 
@@ -59,15 +59,16 @@ public class MyShiroRealm extends AuthorizingRealm {
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
         // 获取用户信息
         String name = token.getPrincipal().toString();
-        User user = loginService.findUserName(name);
-        if (user == null) {
+        AgentParam agentParam = loginService.findUserName(name);
+        if (agentParam == null) {
             throw new UnknownAccountException();
         } else {
             // 获取用户的盐值
-            ByteSource salt = ByteSource.Util.bytes(user.getSalt());
-            // 这里验证authenticationToken和simpleAuthenticationInfo的信息（此处设置的为：user：subject.getPrincipal() 获取到的是user对象 ）
-            SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(user,
-                    user.getPassword().toString(), salt, getName());
+            ByteSource salt = ByteSource.Util.bytes(agentParam.getAgDeskey());
+            // 这里验证authenticationToken和simpleAuthenticationInfo的信息（此处设置的为：user：subject.getPrincipal()
+            // 获取到的是user对象 ）
+            SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(
+                    agentParam, agentParam.getAgPassword(), salt, getName());
             return simpleAuthenticationInfo;
         }
     }
