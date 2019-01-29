@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.store.dao.agent.PayAgentSttleMapper">
-  <resultMap id="BaseResultMap" type="com.example.store.model.agent.PayAgentSttle">
+<mapper namespace="com.example.store.dao.agent.AgentSttleMapper">
+  <resultMap id="BaseResultMap" type="com.example.store.model.agent.AgentSttle">
     <id column="ID" jdbcType="INTEGER" property="id" />
     <result column="AGENTID" jdbcType="INTEGER" property="agentid" />
     <result column="AG_CARDNO" jdbcType="VARCHAR" property="agCardno" />
@@ -33,7 +33,7 @@
     delete from pay_agent_settle
     where ID = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.example.store.model.agent.PayAgentSttle">
+  <insert id="insert" parameterType="com.example.store.model.agent.AgentSttle">
     insert into pay_agent_settle (ID, AGENTID, AG_CARDNO, 
       AG_NAME, AG_BANKCODE, AG_BANKTYPE, 
       AG_BANKPROV, AG_BANKCITY, AG_BANKDISCOUNT, 
@@ -47,7 +47,7 @@
       #{agCreatedate,jdbcType=DATE}, #{agUpdatedate,jdbcType=TIMESTAMP}, #{agExpends,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.example.store.model.agent.PayAgentSttle">
+  <insert id="insertSelective" parameterType="com.example.store.model.agent.AgentSttle">
     insert into pay_agent_settle
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -144,7 +144,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.store.model.agent.PayAgentSttle">
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.store.model.agent.AgentSttle">
     update pay_agent_settle
     <set>
       <if test="agentid != null">
@@ -192,7 +192,7 @@
     </set>
     where ID = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.store.model.agent.PayAgentSttle">
+  <update id="updateByPrimaryKey" parameterType="com.example.store.model.agent.AgentSttle">
     update pay_agent_settle
     set AGENTID = #{agentid,jdbcType=INTEGER},
       AG_CARDNO = #{agCardno,jdbcType=VARCHAR},

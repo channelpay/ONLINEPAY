@@ -3,7 +3,7 @@ package com.example.store.model.agent;
 import java.io.Serializable;
 import java.util.Date;
 
-public class PayAgentParam implements Serializable {
+public class AgentParam implements Serializable {
     private Integer id;
 
     private Integer agentId;
@@ -127,7 +127,7 @@ public class PayAgentParam implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        PayAgentParam other = (PayAgentParam) that;
+        AgentParam other = (AgentParam) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getAgentId() == null ? other.getAgentId() == null : this.getAgentId().equals(other.getAgentId()))
             && (this.getAgNo() == null ? other.getAgNo() == null : this.getAgNo().equals(other.getAgNo()))

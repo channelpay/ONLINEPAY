@@ -46,19 +46,19 @@ PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
 		</javaClientGenerator>
 
 		<!-- 要生成哪些表 -->
-		<table tableName="pay_agent_info" domainObjectName="PayAgentInfo"
+		<table tableName="pay_agent_info" domainObjectName="AgentInfo"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>
 
-		<table tableName="pay_agent_settle" domainObjectName="PayAgentSttle"
+		<table tableName="pay_agent_settle" domainObjectName="AgentSttle"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>
-			
-		<table tableName="pay_agent_param" domainObjectName="PayAgentParam"
+
+		<table tableName="pay_agent_param" domainObjectName="AgentParam"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
-			selectByExampleQueryId="false"></table> 
+			selectByExampleQueryId="false"></table>
 	</context>
 </generatorConfiguration>
