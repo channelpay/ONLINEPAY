@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
 		</commentGenerator>
 		<!--数据库链接URL，用户名、密码 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://localhost:3306/onecdb" userId="ONEC"
+			connectionURL="jdbc:mysql://localhost:3306/onlinepay-agent" userId="ONEC"
 			password="2112">
 		</jdbcConnection>
 		<javaTypeResolver>
@@ -28,32 +28,37 @@ PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
 			<property name="forceBigDecimals" value="false" />
 		</javaTypeResolver>
 		<!-- 生成模型的包名和位置 -->
-		<javaModelGenerator targetPackage="com.example.store.model"
-			targetProject="bookstore/src/main/java">
+		<javaModelGenerator targetPackage="com.example.store.model.agent"
+			targetProject="onlinepay-clinte-agent/src/main/java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 		<!-- 生成映射文件的包名和位置 -->
-		<sqlMapGenerator targetPackage="mapper"
-			targetProject="bookstore/src/main/resources">
+		<sqlMapGenerator targetPackage="mapper.agent"
+			targetProject="onlinepay-clinte-agent/src/main/resources">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 		<!-- 生成DAO的包名和位置 -->
 		<javaClientGenerator type="XMLMAPPER"
-			targetPackage="com.example.store.dao" implementationPackage="com.example.store.dao.impl"
-			targetProject="bookstore/src/main/java">
+			targetPackage="com.example.store.dao.agent" implementationPackage="com.example.store.dao.agent.impl"
+			targetProject="onlinepay-clinte-agent/src/main/java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
 		<!-- 要生成哪些表 -->
-		<table tableName="book_store_manage" domainObjectName="BookStoreManage"
+		<table tableName="pay_agent_info" domainObjectName="PayAgentInfo"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>
 
-		<table tableName="book_store_message" domainObjectName="BookStoreMessage"
+		<table tableName="pay_agent_settle" domainObjectName="PayAgentSttle"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>
+			
+		<table tableName="pay_agent_param" domainObjectName="PayAgentParam"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table> 
 	</context>
 </generatorConfiguration>
