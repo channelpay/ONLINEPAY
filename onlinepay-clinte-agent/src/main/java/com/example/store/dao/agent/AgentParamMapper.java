@@ -10,6 +10,8 @@ public interface AgentParamMapper {
     int insertSelective(AgentParam record);
 
     AgentParam selectByPrimaryKey(Integer id);
+    
+    AgentParam selectByEmail(String agentEmail);
 
     int updateByPrimaryKeySelective(AgentParam record);
 

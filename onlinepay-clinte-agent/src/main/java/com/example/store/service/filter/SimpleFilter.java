@@ -29,8 +29,8 @@ public class SimpleFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
             throws IOException, ServletException {
-        System.out.println("获取到的ip    host：" + request.getRemoteHost());
-        System.out.println("获取到的ip address：" + request.getRemoteAddr());
+        System.out.println("拦截器获取到的ip    host：" + request.getRemoteHost());
+        System.out.println("拦截器获取到的ip address：" + request.getRemoteAddr());
         filterChain.doFilter(request, response);
     }
 

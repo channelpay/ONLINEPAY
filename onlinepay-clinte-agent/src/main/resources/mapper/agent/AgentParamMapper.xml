@@ -24,6 +24,13 @@
     from pay_agent_param
     where ID = #{id,jdbcType=INTEGER}
   </select>
+  <!--通过name 查询代理商数据  -->
+  <select id="selectByEmail" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pay_agent_param
+    where AG_EMAIL = #{AG_EMAIL,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from pay_agent_param
     where ID = #{id,jdbcType=INTEGER}

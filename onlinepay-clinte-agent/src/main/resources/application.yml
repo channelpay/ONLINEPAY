@@ -7,16 +7,16 @@ spring:
   profiles:     
   datasource:
      master:
-      jdbcUrl: jdbc:mysql://localhost:3306/bookstore?useUnicode=true&characterEncoding=utf8 ## 解决插入中文乱码问题
+      jdbcUrl: jdbc:mysql://localhost:3306/onlinepay-agent?useUnicode=true&characterEncoding=utf8 ## 解决插入中文乱码问题
       username: ONEC
-      password: ONEC
+      password: 2112
       type: com.alibaba.druid.pool.DruidDataSource
       driverClassName: com.mysql.jdbc.Driver
       useSSL: false
      middle:
-      jdbcUrl: jdbc:mysql://localhost:3306/onecpay?useUnicode=true&characterEncoding=utf8 ## 解决插入中文乱码问题
+      jdbcUrl: jdbc:mysql://localhost:3306/onlinepay-agent?useUnicode=true&characterEncoding=utf8 ## 解决插入中文乱码问题
       username: ONEC
-      password: ONEC
+      password: 2112
       #使用druid数据源
       type: com.alibaba.druid.pool.DruidDataSource
       driverClassName: com.mysql.jdbc.Driver
@@ -39,16 +39,16 @@ spring:
       mode: LEGACYHTML5
 
 # springboot jpa 引入
-  jpa:
-      database: mysql
-      show-sql: true
-      hibernate:
-        ddl-auto: update
-        naming:
-          strategy: org.hibernate.cfg.DefaultComponentSafeNamingStrategy
-      properties:
-         hibernate:
-            dialect: org.hibernate.dialect.MySQL5Dialect   
+#  jpa:
+#      database: mysql
+#      show-sql: true
+#      hibernate:
+#        ddl-auto: update
+#        naming:
+#          strategy: org.hibernate.cfg.DefaultComponentSafeNamingStrategy
+#      properties:
+#         hibernate:
+#            dialect: org.hibernate.dialect.MySQL5Dialect   
    
 # redis 数据的配置 
         

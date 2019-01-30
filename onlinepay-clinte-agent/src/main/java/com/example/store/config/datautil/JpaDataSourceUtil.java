@@ -26,10 +26,10 @@ import org.springframework.transaction.PlatformTransactionManager;
  * @author 26500
  *
  */
-@Configuration
-@EnableJpaRepositories(basePackages = "com.example.store",
-        entityManagerFactoryRef = "jpaEntityManagerFactory",
-        transactionManagerRef = "jpaTransactionManager")
+//@Configuration
+//@EnableJpaRepositories(basePackages = "com.example.store",
+//        entityManagerFactoryRef = "jpaEntityManagerFactory",
+//        transactionManagerRef = "jpaTransactionManager")
 public class JpaDataSourceUtil {
 
     @Autowired

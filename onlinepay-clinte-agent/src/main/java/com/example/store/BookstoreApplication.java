@@ -7,9 +7,10 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerA
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class,
-        HibernateJpaAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class})
-@EnableTransactionManagement
+//@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class,
+//        HibernateJpaAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class})
+//@EnableTransactionManagement
+@SpringBootApplication
 public class BookstoreApplication {
 
     public static void main(String[] args) {
