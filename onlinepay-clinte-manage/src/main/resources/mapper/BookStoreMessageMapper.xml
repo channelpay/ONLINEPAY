@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.store.dao.BookStoreMessageMapper">
+  <resultMap id="BaseResultMap" type="com.example.store.model.BookStoreMessage">
+    <id column="book_store_id" jdbcType="BIGINT" property="bookStoreId" />
+    <result column="book_store_type" jdbcType="VARCHAR" property="bookStoreType" />
+    <result column="book_store_name" jdbcType="VARCHAR" property="bookStoreName" />
+    <result column="book_store_phone" jdbcType="VARCHAR" property="bookStorePhone" />
+    <result column="book_store_create" jdbcType="DATE" property="bookStoreCreate" />
+    <result column="book_store_address" jdbcType="VARCHAR" property="bookStoreAddress" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    book_store_id, book_store_type, book_store_name, book_store_phone, book_store_create, 
+    book_store_address
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from book_store_message
+    where book_store_id = #{bookStoreId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from book_store_message
+    where book_store_id = #{bookStoreId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.store.model.BookStoreMessage">
+    insert into book_store_message (book_store_id, book_store_type, book_store_name, 
+      book_store_phone, book_store_create, book_store_address
+      )
+    values (#{bookStoreId,jdbcType=BIGINT}, #{bookStoreType,jdbcType=VARCHAR}, #{bookStoreName,jdbcType=VARCHAR}, 
+      #{bookStorePhone,jdbcType=VARCHAR}, #{bookStoreCreate,jdbcType=DATE}, #{bookStoreAddress,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.store.model.BookStoreMessage">
+    insert into book_store_message
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bookStoreId != null">
+        book_store_id,
+      </if>
+      <if test="bookStoreType != null">
+        book_store_type,
+      </if>
+      <if test="bookStoreName != null">
+        book_store_name,
+      </if>
+      <if test="bookStorePhone != null">
+        book_store_phone,
+      </if>
+      <if test="bookStoreCreate != null">
+        book_store_create,
+      </if>
+      <if test="bookStoreAddress != null">
+        book_store_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bookStoreId != null">
+        #{bookStoreId,jdbcType=BIGINT},
+      </if>
+      <if test="bookStoreType != null">
+        #{bookStoreType,jdbcType=VARCHAR},
+      </if>
+      <if test="bookStoreName != null">
+        #{bookStoreName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookStorePhone != null">
+        #{bookStorePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="bookStoreCreate != null">
+        #{bookStoreCreate,jdbcType=DATE},
+      </if>
+      <if test="bookStoreAddress != null">
+        #{bookStoreAddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.store.model.BookStoreMessage">
+    update book_store_message
+    <set>
+      <if test="bookStoreType != null">
+        book_store_type = #{bookStoreType,jdbcType=VARCHAR},
+      </if>
+      <if test="bookStoreName != null">
+        book_store_name = #{bookStoreName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookStorePhone != null">
+        book_store_phone = #{bookStorePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="bookStoreCreate != null">
+        book_store_create = #{bookStoreCreate,jdbcType=DATE},
+      </if>
+      <if test="bookStoreAddress != null">
+        book_store_address = #{bookStoreAddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where book_store_id = #{bookStoreId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.store.model.BookStoreMessage">
+    update book_store_message
+    set book_store_type = #{bookStoreType,jdbcType=VARCHAR},
+      book_store_name = #{bookStoreName,jdbcType=VARCHAR},
+      book_store_phone = #{bookStorePhone,jdbcType=VARCHAR},
+      book_store_create = #{bookStoreCreate,jdbcType=DATE},
+      book_store_address = #{bookStoreAddress,jdbcType=VARCHAR}
+    where book_store_id = #{bookStoreId,jdbcType=BIGINT}
+  </update>
+</mapper>

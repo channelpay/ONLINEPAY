@@ -18,7 +18,7 @@ public class ActiveMq {
     @Test
     public void context() {
         for (int i = 0; i < 100; i++) {
-            produce.sentMessage("result.tocip", "message:" + i + "个");
+           // produce.sentMessage("result.tocip", "message:" + i + "个");
         }
     }
 }

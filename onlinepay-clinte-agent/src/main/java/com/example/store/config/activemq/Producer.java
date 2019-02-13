@@ -21,7 +21,7 @@ public class Producer {
     private JmsMessagingTemplate jmsMessagingTemplate;
 
     /**
-     * @param queuce 生产名称
+     * @param queuces 生产名称
      * @param message 生产消息
      */
     public void sentMessage(String destName, String message) {

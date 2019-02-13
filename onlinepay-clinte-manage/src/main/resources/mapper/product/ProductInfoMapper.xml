@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.store.dao.product.ProductInfoMapper">
+  <resultMap id="BaseResultMap" type="com.example.store.model.product.ProductInfo">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="SALEID" jdbcType="INTEGER" property="saleid" />
+    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+    <result column="PRODUCT_CODE" jdbcType="VARCHAR" property="productCode" />
+    <result column="PRODUCT_URL" jdbcType="VARCHAR" property="productUrl" />
+    <result column="PRODUCT_STATUS" jdbcType="VARCHAR" property="productStatus" />
+    <result column="PRODUCT_CREATEDATE" jdbcType="TIMESTAMP" property="productCreatedate" />
+    <result column="PRODUCT_UPDATEDATE" jdbcType="TIMESTAMP" property="productUpdatedate" />
+    <result column="PRODUCT_EXPENDS" jdbcType="VARCHAR" property="productExpends" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, SALEID, PRODUCT_NAME, PRODUCT_CODE, PRODUCT_URL, PRODUCT_STATUS, PRODUCT_CREATEDATE, 
+    PRODUCT_UPDATEDATE, PRODUCT_EXPENDS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pay_product_info
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pay_product_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.store.model.product.ProductInfo">
+    insert into pay_product_info (ID, SALEID, PRODUCT_NAME, 
+      PRODUCT_CODE, PRODUCT_URL, PRODUCT_STATUS, 
+      PRODUCT_CREATEDATE, PRODUCT_UPDATEDATE, 
+      PRODUCT_EXPENDS)
+    values (#{id,jdbcType=INTEGER}, #{saleid,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, 
+      #{productCode,jdbcType=VARCHAR}, #{productUrl,jdbcType=VARCHAR}, #{productStatus,jdbcType=VARCHAR}, 
+      #{productCreatedate,jdbcType=TIMESTAMP}, #{productUpdatedate,jdbcType=TIMESTAMP}, 
+      #{productExpends,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.store.model.product.ProductInfo">
+    insert into pay_product_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="saleid != null">
+        SALEID,
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME,
+      </if>
+      <if test="productCode != null">
+        PRODUCT_CODE,
+      </if>
+      <if test="productUrl != null">
+        PRODUCT_URL,
+      </if>
+      <if test="productStatus != null">
+        PRODUCT_STATUS,
+      </if>
+      <if test="productCreatedate != null">
+        PRODUCT_CREATEDATE,
+      </if>
+      <if test="productUpdatedate != null">
+        PRODUCT_UPDATEDATE,
+      </if>
+      <if test="productExpends != null">
+        PRODUCT_EXPENDS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="saleid != null">
+        #{saleid,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null">
+        #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productUrl != null">
+        #{productUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="productStatus != null">
+        #{productStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="productCreatedate != null">
+        #{productCreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productUpdatedate != null">
+        #{productUpdatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productExpends != null">
+        #{productExpends,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.store.model.product.ProductInfo">
+    update pay_product_info
+    <set>
+      <if test="saleid != null">
+        SALEID = #{saleid,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null">
+        PRODUCT_CODE = #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productUrl != null">
+        PRODUCT_URL = #{productUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="productStatus != null">
+        PRODUCT_STATUS = #{productStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="productCreatedate != null">
+        PRODUCT_CREATEDATE = #{productCreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productUpdatedate != null">
+        PRODUCT_UPDATEDATE = #{productUpdatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productExpends != null">
+        PRODUCT_EXPENDS = #{productExpends,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.store.model.product.ProductInfo">
+    update pay_product_info
+    set SALEID = #{saleid,jdbcType=INTEGER},
+      PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      PRODUCT_CODE = #{productCode,jdbcType=VARCHAR},
+      PRODUCT_URL = #{productUrl,jdbcType=VARCHAR},
+      PRODUCT_STATUS = #{productStatus,jdbcType=VARCHAR},
+      PRODUCT_CREATEDATE = #{productCreatedate,jdbcType=TIMESTAMP},
+      PRODUCT_UPDATEDATE = #{productUpdatedate,jdbcType=TIMESTAMP},
+      PRODUCT_EXPENDS = #{productExpends,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
