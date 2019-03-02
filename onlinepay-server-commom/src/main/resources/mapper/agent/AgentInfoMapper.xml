@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.store.dao.agent.AgentInfoMapper">
+	<resultMap id="BaseResultMap" type="com.example.store.model.agent.AgentInfo">
+		<id column="ID" jdbcType="INTEGER" property="id" />
+		<result column="AGENT_NO" jdbcType="VARCHAR" property="agentNo" />
+		<result column="AGENT_NAME" jdbcType="VARCHAR" property="agentName" />
+		<result column="AGENT_STATUS" jdbcType="VARCHAR" property="agentStatus" />
+		<result column="AGENT_PHONE" jdbcType="VARCHAR" property="agentPhone" />
+		<result column="AGENT_EMAIL" jdbcType="VARCHAR" property="agentEmail" />
+		<result column="AGENT_USER" jdbcType="VARCHAR" property="agentUser" />
+		<result column="AGENT_MOBILE" jdbcType="VARCHAR" property="agentMobile" />
+		<result column="AGENT_IDCARDNO" jdbcType="VARCHAR" property="agentIdcardno" />
+		<result column="AGENT_LICENCE" jdbcType="VARCHAR" property="agentLicence" />
+		<result column="AGENT_PROVINCE" jdbcType="VARCHAR" property="agentProvince" />
+		<result column="AGENT_CITY" jdbcType="VARCHAR" property="agentCity" />
+		<result column="AGENT_DISCOUNT" jdbcType="VARCHAR" property="agentDiscount" />
+		<result column="AGENT_ADDRESS" jdbcType="VARCHAR" property="agentAddress" />
+		<result column="AGENT_CREATEDATE" jdbcType="DATE" property="agentCreatedate" />
+		<result column="AGENT_UPDATEDATE" jdbcType="DATE" property="agentUpdatedate" />
+		<result column="AGENT_EXPENDS" jdbcType="VARCHAR" property="agentExpends" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, AGENT_NO, AGENT_NAME, AGENT_STATUS, AGENT_PHONE,
+		AGENT_EMAIL,
+		AGENT_USER, AGENT_MOBILE,
+		AGENT_IDCARDNO, AGENT_LICENCE,
+		AGENT_PROVINCE, AGENT_CITY, AGENT_DISCOUNT,
+		AGENT_ADDRESS,
+		AGENT_CREATEDATE, AGENT_UPDATEDATE, AGENT_EXPENDS
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from pay_agent_info
+		where ID = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		pay_agent_info
+		where ID = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.example.store.model.agent.AgentInfo">
+	<!-- 插入数据的同时 实体对象中set 了id的值  同时也可以配置：<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="User">-->
+		<selectKey keyProperty="id" resultType="integer" order="BEFORE">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into pay_agent_info (ID, AGENT_NO, AGENT_NAME,
+		AGENT_STATUS,
+		AGENT_PHONE, AGENT_EMAIL,
+		AGENT_USER, AGENT_MOBILE, AGENT_IDCARDNO,
+		AGENT_LICENCE, AGENT_PROVINCE, AGENT_CITY,
+		AGENT_DISCOUNT,
+		AGENT_ADDRESS, AGENT_CREATEDATE,
+		AGENT_UPDATEDATE, AGENT_EXPENDS)
+		values (#{id,jdbcType=INTEGER}, #{agentNo,jdbcType=VARCHAR},
+		#{agentName,jdbcType=VARCHAR},
+		#{agentStatus,jdbcType=VARCHAR},
+		#{agentPhone,jdbcType=VARCHAR}, #{agentEmail,jdbcType=VARCHAR},
+		#{agentUser,jdbcType=VARCHAR}, #{agentMobile,jdbcType=VARCHAR},
+		#{agentIdcardno,jdbcType=VARCHAR},
+		#{agentLicence,jdbcType=VARCHAR},
+		#{agentProvince,jdbcType=VARCHAR}, #{agentCity,jdbcType=VARCHAR},
+		#{agentDiscount,jdbcType=VARCHAR}, #{agentAddress,jdbcType=VARCHAR},
+		#{agentCreatedate,jdbcType=DATE},
+		#{agentUpdatedate,jdbcType=DATE},
+		#{agentExpends,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.example.store.model.agent.AgentInfo">
+		insert into pay_agent_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="agentNo != null">
+				AGENT_NO,
+			</if>
+			<if test="agentName != null">
+				AGENT_NAME,
+			</if>
+			<if test="agentStatus != null">
+				AGENT_STATUS,
+			</if>
+			<if test="agentPhone != null">
+				AGENT_PHONE,
+			</if>
+			<if test="agentEmail != null">
+				AGENT_EMAIL,
+			</if>
+			<if test="agentUser != null">
+				AGENT_USER,
+			</if>
+			<if test="agentMobile != null">
+				AGENT_MOBILE,
+			</if>
+			<if test="agentIdcardno != null">
+				AGENT_IDCARDNO,
+			</if>
+			<if test="agentLicence != null">
+				AGENT_LICENCE,
+			</if>
+			<if test="agentProvince != null">
+				AGENT_PROVINCE,
+			</if>
+			<if test="agentCity != null">
+				AGENT_CITY,
+			</if>
+			<if test="agentDiscount != null">
+				AGENT_DISCOUNT,
+			</if>
+			<if test="agentAddress != null">
+				AGENT_ADDRESS,
+			</if>
+			<if test="agentCreatedate != null">
+				AGENT_CREATEDATE,
+			</if>
+			<if test="agentUpdatedate != null">
+				AGENT_UPDATEDATE,
+			</if>
+			<if test="agentExpends != null">
+				AGENT_EXPENDS,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="agentNo != null">
+				#{agentNo,jdbcType=VARCHAR},
+			</if>
+			<if test="agentName != null">
+				#{agentName,jdbcType=VARCHAR},
+			</if>
+			<if test="agentStatus != null">
+				#{agentStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="agentPhone != null">
+				#{agentPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="agentEmail != null">
+				#{agentEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="agentUser != null">
+				#{agentUser,jdbcType=VARCHAR},
+			</if>
+			<if test="agentMobile != null">
+				#{agentMobile,jdbcType=VARCHAR},
+			</if>
+			<if test="agentIdcardno != null">
+				#{agentIdcardno,jdbcType=VARCHAR},
+			</if>
+			<if test="agentLicence != null">
+				#{agentLicence,jdbcType=VARCHAR},
+			</if>
+			<if test="agentProvince != null">
+				#{agentProvince,jdbcType=VARCHAR},
+			</if>
+			<if test="agentCity != null">
+				#{agentCity,jdbcType=VARCHAR},
+			</if>
+			<if test="agentDiscount != null">
+				#{agentDiscount,jdbcType=VARCHAR},
+			</if>
+			<if test="agentAddress != null">
+				#{agentAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="agentCreatedate != null">
+				#{agentCreatedate,jdbcType=DATE},
+			</if>
+			<if test="agentUpdatedate != null">
+				#{agentUpdatedate,jdbcType=DATE},
+			</if>
+			<if test="agentExpends != null">
+				#{agentExpends,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.example.store.model.agent.AgentInfo">
+		update pay_agent_info
+		<set>
+			<if test="agentNo != null">
+				AGENT_NO = #{agentNo,jdbcType=VARCHAR},
+			</if>
+			<if test="agentName != null">
+				AGENT_NAME = #{agentName,jdbcType=VARCHAR},
+			</if>
+			<if test="agentStatus != null">
+				AGENT_STATUS = #{agentStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="agentPhone != null">
+				AGENT_PHONE = #{agentPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="agentEmail != null">
+				AGENT_EMAIL = #{agentEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="agentUser != null">
+				AGENT_USER = #{agentUser,jdbcType=VARCHAR},
+			</if>
+			<if test="agentMobile != null">
+				AGENT_MOBILE = #{agentMobile,jdbcType=VARCHAR},
+			</if>
+			<if test="agentIdcardno != null">
+				AGENT_IDCARDNO = #{agentIdcardno,jdbcType=VARCHAR},
+			</if>
+			<if test="agentLicence != null">
+				AGENT_LICENCE = #{agentLicence,jdbcType=VARCHAR},
+			</if>
+			<if test="agentProvince != null">
+				AGENT_PROVINCE = #{agentProvince,jdbcType=VARCHAR},
+			</if>
+			<if test="agentCity != null">
+				AGENT_CITY = #{agentCity,jdbcType=VARCHAR},
+			</if>
+			<if test="agentDiscount != null">
+				AGENT_DISCOUNT = #{agentDiscount,jdbcType=VARCHAR},
+			</if>
+			<if test="agentAddress != null">
+				AGENT_ADDRESS = #{agentAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="agentCreatedate != null">
+				AGENT_CREATEDATE = #{agentCreatedate,jdbcType=DATE},
+			</if>
+			<if test="agentUpdatedate != null">
+				AGENT_UPDATEDATE = #{agentUpdatedate,jdbcType=DATE},
+			</if>
+			<if test="agentExpends != null">
+				AGENT_EXPENDS = #{agentExpends,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.example.store.model.agent.AgentInfo">
+		update
+		pay_agent_info
+		set AGENT_NO = #{agentNo,jdbcType=VARCHAR},
+		AGENT_NAME =
+		#{agentName,jdbcType=VARCHAR},
+		AGENT_STATUS =
+		#{agentStatus,jdbcType=VARCHAR},
+		AGENT_PHONE =
+		#{agentPhone,jdbcType=VARCHAR},
+		AGENT_EMAIL =
+		#{agentEmail,jdbcType=VARCHAR},
+		AGENT_USER =
+		#{agentUser,jdbcType=VARCHAR},
+		AGENT_MOBILE =
+		#{agentMobile,jdbcType=VARCHAR},
+		AGENT_IDCARDNO =
+		#{agentIdcardno,jdbcType=VARCHAR},
+		AGENT_LICENCE =
+		#{agentLicence,jdbcType=VARCHAR},
+		AGENT_PROVINCE =
+		#{agentProvince,jdbcType=VARCHAR},
+		AGENT_CITY =
+		#{agentCity,jdbcType=VARCHAR},
+		AGENT_DISCOUNT =
+		#{agentDiscount,jdbcType=VARCHAR},
+		AGENT_ADDRESS =
+		#{agentAddress,jdbcType=VARCHAR},
+		AGENT_CREATEDATE =
+		#{agentCreatedate,jdbcType=DATE},
+		AGENT_UPDATEDATE =
+		#{agentUpdatedate,jdbcType=DATE},
+		AGENT_EXPENDS =
+		#{agentExpends,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>
