@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" 
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+<localRepository>I:\Repositories\Maven</localRepository>
+
+<pluginGroups>
+  <pluginGroup>org.mortbay.jetty</pluginGroup>
+</pluginGroups>
+
+<proxies>
+   
+</proxies>
+
+<servers>
+  <server>
+	<id>releases</id>
+    <username>ali</username>
+    <password>ali</password>
+  </server>
+  <server>
+	<id>Snapshots</id>
+    <username>ali</username>
+    <password>ali</password>
+  </server>
+</servers>
+
+<mirrors>
+	<mirror>  
+      <id>nexus-public-snapshots</id>
+      <mirrorOf>public-snapshots</mirrorOf> 
+      <url>http://maven.aliyun.com/nexus/content/repositories/snapshots/</url>
+    </mirror>
+</mirrors>
+
+<profiles>
+	<!-- setting 文件配置为jdk1.8 -->
+	<profile>
+		<id>
+			jdk1.8
+		</id>
+		<activation>
+			<activeByDefault>true</activeByDefault>
+			<jdk>1.8</jdk>
+		</activation>
+		<properties>
+			<maven.compiler.source>1.8</maven.compiler.source>
+			<maven.compiler.target>1.8</maven.compiler.target>
+			<maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+		</properties>
+	</profile>
+
+</profiles>
+
+<activeProfiles>
+	<activeProfile>development</activeProfile>
+	<activeProfile>public-snapshots</activeProfile>
+</activeProfiles>
+</settings>
