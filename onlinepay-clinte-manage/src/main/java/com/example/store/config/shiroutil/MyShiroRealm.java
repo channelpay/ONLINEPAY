@@ -1,5 +1,9 @@
 package com.example.store.config.shiroutil;
 
+import com.example.store.model.manage.UserInfo;
+import com.example.store.model.sale.SaleInfo;
+import com.example.store.service.login.UserLoginService;
+import com.example.store.service.sale.SaleLoginService;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -21,15 +25,14 @@ import com.example.store.service.agent.IAgentLoginService;
 
 /**
  * 设计角色以及权限接口
- * 
- * @author 26500
  *
+ * @author 26500
  */
 public class MyShiroRealm extends AuthorizingRealm {
 
     // 用于用户查询
     @Autowired
-    private IAgentLoginService loginService;
+    private UserLoginService loginService;
 
     // 角色权限和对应权限添加
     @Override
@@ -37,7 +40,7 @@ public class MyShiroRealm extends AuthorizingRealm {
         // 获取登录用户名
         String name = (String) principalCollection.getPrimaryPrincipal();
         // 查询用户名称
-        AgentParam agentParam = loginService.findUserName(name);
+        UserInfo userInfo = loginService.findUserName(name);
         // 添加角色和权限
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
         /*
@@ -55,22 +58,22 @@ public class MyShiroRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken)
             throws AuthenticationException {
-        // 加这一步的目的是在Post请求的时候会先进认证，然后在到请求
-        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
-        // 获取用户信息
-        String name = token.getPrincipal().toString();
-        AgentParam agentParam = loginService.findUserName(name);
-        if (agentParam == null) {
-            throw new UnknownAccountException();
-        } else {
+            // 加这一步的目的是在Post请求的时候会先进认证，然后在到请求
+            UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
+            // 获取用户信息
+            String name = token.getPrincipal().toString();
+            UserInfo userInfo = loginService.findUserName(name);
+            if (null == userInfo) {
+                throw new UnknownAccountException();
+            }
             // 获取用户的盐值
-            ByteSource salt = ByteSource.Util.bytes(agentParam.getAgDeskey());
+            ByteSource salt = ByteSource.Util.bytes(userInfo.getUserSalt());
             // 这里验证authenticationToken和simpleAuthenticationInfo的信息（此处设置的为：user：subject.getPrincipal()
             // 获取到的是user对象 ）
             SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(
-                    agentParam, agentParam.getAgPassword(), salt, getName());
-            return simpleAuthenticationInfo;
-        }
+                    userInfo, userInfo.getUserPassword(), salt, getName());
+        return simpleAuthenticationInfo;
+
     }
 }
 /*

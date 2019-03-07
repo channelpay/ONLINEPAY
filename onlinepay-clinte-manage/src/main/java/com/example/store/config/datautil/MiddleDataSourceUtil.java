@@ -1,11 +1,11 @@
 package com.example.store.config.datautil;
 
 import javax.sql.DataSource;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -24,12 +24,13 @@ import com.alibaba.druid.pool.DruidDataSource;
 @MapperScan(basePackages = {MiddleDataSourceUtil.MIDDLE_DATA_PACKAGE},
         sqlSessionFactoryRef = "middleSqlSessionFactory")
 public class MiddleDataSourceUtil {
-    private static final Log logger = LogFactory.getLog(MiddleDataSourceUtil.class);
+    Logger logger = LoggerFactory.getLogger(this.getClass());
+
     /**
      * 精确到主数据源的配置，以便和其他数据源分开
      */
     protected static final String MIDDLE_DATA_PACKAGE = "com.example.store.dao";
-    private static final String MIDDLE_DATA_MAPPER = "classpath:mapper/*.xml";
+    private static final String MIDDLE_DATA_MAPPER = "classpath*:mapper/*.xml";
 
     @Value("${spring.datasource.middle.jdbcUrl}")
     public String jdbcUrl;
@@ -51,11 +52,11 @@ public class MiddleDataSourceUtil {
     @Bean(name = "middleDataSource")
     public DataSource masterDataSource() {
         DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setDriverClassName(driverClass);
-        dataSource.setUrl(jdbcUrl);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
-        logger.info("加载数据库的连接：" + username);
+        dataSource.setDriverClassName(driverClass);
+        dataSource.setUrl(jdbcUrl);
+
         return dataSource;
     }
 

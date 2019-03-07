@@ -1,8 +1,8 @@
 package com.example.store.config.redisutil;
 
 import java.time.LocalDate;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
@@ -21,9 +21,7 @@ import redis.clients.jedis.JedisPoolConfig;
 @EnableCaching
 @Configuration
 public class RedisTemplateUtil extends CachingConfigurerSupport {
-
-    private static final Log logger = LogFactory.getLog(RedisTemplateUtil.class);
-
+    Logger logger = LoggerFactory.getLogger(this.getClass());
     @Value("${spring.redis.host}")
     private String host;
     @Value("${spring.redis.port}")
@@ -41,13 +39,12 @@ public class RedisTemplateUtil extends CachingConfigurerSupport {
 
     @Bean
     public JedisPool redisPoolFactory() {
-        logger.info("初始化加载redis 数据连接池" + timeout + "----获取到的密码-----" + password);
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
         jedisPoolConfig.setMaxIdle(maxIdle);
         jedisPoolConfig.setMaxWaitMillis(maxWaitMillis);
         jedisPoolConfig.setMaxTotal(maxTotal);
-        JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout, "862112");
-        logger.info("redis数据链接加载完毕-------------------:" + LocalDate.now());
+        JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout, password);
+        logger.info("redis数据链接配置完毕-------------------:" + LocalDate.now());
         return jedisPool;
     }
 

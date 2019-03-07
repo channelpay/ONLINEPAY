@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class SaleInfo implements Serializable {
+
     private Integer id;
 
     private String salename;

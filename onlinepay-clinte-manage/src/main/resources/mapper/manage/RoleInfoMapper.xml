@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.store.dao.manage.RoleInfoMapper">
+  <resultMap id="BaseResultMap" type="com.example.store.model.manage.RoleInfo">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="ROLENAME" jdbcType="VARCHAR" property="rolename" />
+    <result column="ROLECODE" jdbcType="VARCHAR" property="rolecode" />
+    <result column="ROLESTATUS" jdbcType="VARCHAR" property="rolestatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ROLENAME, ROLECODE, ROLESTATUS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from m_role_info
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from m_role_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.store.model.manage.RoleInfo">
+    insert into m_role_info (ID, ROLENAME, ROLECODE, 
+      ROLESTATUS)
+    values (#{id,jdbcType=INTEGER}, #{rolename,jdbcType=VARCHAR}, #{rolecode,jdbcType=VARCHAR}, 
+      #{rolestatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.store.model.manage.RoleInfo">
+    insert into m_role_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="rolename != null">
+        ROLENAME,
+      </if>
+      <if test="rolecode != null">
+        ROLECODE,
+      </if>
+      <if test="rolestatus != null">
+        ROLESTATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="rolename != null">
+        #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="rolecode != null">
+        #{rolecode,jdbcType=VARCHAR},
+      </if>
+      <if test="rolestatus != null">
+        #{rolestatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.store.model.manage.RoleInfo">
+    update m_role_info
+    <set>
+      <if test="rolename != null">
+        ROLENAME = #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="rolecode != null">
+        ROLECODE = #{rolecode,jdbcType=VARCHAR},
+      </if>
+      <if test="rolestatus != null">
+        ROLESTATUS = #{rolestatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.store.model.manage.RoleInfo">
+    update m_role_info
+    set ROLENAME = #{rolename,jdbcType=VARCHAR},
+      ROLECODE = #{rolecode,jdbcType=VARCHAR},
+      ROLESTATUS = #{rolestatus,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

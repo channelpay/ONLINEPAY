@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.store.dao.manage.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.example.store.model.manage.UserInfo">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="USER_PHONE" jdbcType="VARCHAR" property="userPhone" />
+    <result column="USER_EMAIL" jdbcType="VARCHAR" property="userEmail" />
+    <result column="USER_SALT" jdbcType="VARCHAR" property="userSalt" />
+    <result column="USER_PASSWORD" jdbcType="VARCHAR" property="userPassword" />
+    <result column="USER_NO" jdbcType="VARCHAR" property="userNo" />
+    <result column="USER_STATUS" jdbcType="CHAR" property="userStatus" />
+    <result column="USER_CREATE_DATE" jdbcType="DATE" property="userCreateDate" />
+    <result column="USER_UPDATE_DATE" jdbcType="DATE" property="userUpdateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, USER_NAME, USER_PHONE, USER_EMAIL, USER_SALT, USER_PASSWORD, USER_NO, USER_STATUS, USER_CREATE_DATE, USER_UPDATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from m_user_info
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <!-- 通过手机号查询代理信息-->
+  <select id="selectByUserPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from m_user_info
+    where USER_PHONE = #{USER_PHONE,jdbcType=VARCHAR}
+  </select>
+  <!-- 通过邮箱查询代理信息-->
+  <select id="selectByUserEmail" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from m_user_info
+    where USER_EMAIL = #{USER_EMAIL,jdbcType=VARCHAR}
+  </select>
+  <!-- 通过姓名查询代理信息-->
+  <select id="selectByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from m_user_info
+    where USER_NAME = #{USER_NAME,jdbcType=VARCHAR}
+  </select>
+  <!-- 通过查询代理信息-->
+  <select id="selectAllUser" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from m_user_info
+    where 1=1
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from m_user_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.store.model.manage.UserInfo">
+    <selectKey keyProperty="id" resultType="java.lang.Integer" order="BEFORE">
+      select nextval_agent('se_m_user_info');
+    </selectKey>
+    insert into m_user_info (ID,USER_NAME, USER_PHONE,
+      USER_EMAIL, USER_SALT, USER_PASSWORD, 
+      USER_NO, USER_STATUS, USER_CREATE_DATE, USER_UPDATE_DATE)
+    values (#{id,jdbcType=INTEGER},#{userName,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR},
+      #{userEmail,jdbcType=VARCHAR}, #{userSalt,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, 
+      #{userNo,jdbcType=VARCHAR}, #{userStatus,jdbcType=CHAR},#{userCreateDate,jdbcType=DATE},#{userUpdateDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.store.model.manage.UserInfo">
+    <selectKey keyProperty="id" resultType="java.lang.Integer" order="BEFORE">
+      select nextval_agent('se_m_user_info');
+    </selectKey>
+    insert into m_user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="userName != null">
+        USER_NAME,
+      </if>
+      <if test="userPhone != null">
+        USER_PHONE,
+      </if>
+      <if test="userEmail != null">
+        USER_EMAIL,
+      </if>
+      <if test="userSalt != null">
+        USER_SALT,
+      </if>
+      <if test="userPassword != null">
+        USER_PASSWORD,
+      </if>
+      <if test="userNo != null">
+        USER_NO,
+      </if>
+      <if test="userStatus != null">
+        USER_STATUS,
+      </if>
+      <if test="userCreateDate != null">
+        USER_CREATE_DATE,
+      </if>
+      <if test="userUpdateDate != null">
+        USER_UPDATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null">
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null">
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userSalt != null">
+        #{userSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userNo != null">
+        #{userNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null">
+        #{userStatus,jdbcType=CHAR},
+      </if>
+      <if test="userCreateDate != null">
+        #{userCreateDate,jdbcType=DATE},
+      </if>
+      <if test="userUpdateDate != null">
+        #{userUpdateDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.store.model.manage.UserInfo">
+    update m_user_info
+    <set>
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null">
+        USER_PHONE = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null">
+        USER_EMAIL = #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userSalt != null">
+        USER_SALT = #{userSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        USER_PASSWORD = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userNo != null">
+        USER_NO = #{userNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null">
+        USER_STATUS = #{userStatus,jdbcType=CHAR},
+      </if>
+      <if test="userCreateDate != null">
+        USER_CREATE_DATE = #{userCreateDate,jdbcType=DATE},
+      </if>
+      <if test="userUpdateDate != null">
+        USER_UPDATE_DATE = #{userUpdateDate,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.store.model.manage.UserInfo">
+    update m_user_info
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+      USER_PHONE = #{userPhone,jdbcType=VARCHAR},
+      USER_EMAIL = #{userEmail,jdbcType=VARCHAR},
+      USER_SALT = #{userSalt,jdbcType=VARCHAR},
+      USER_PASSWORD = #{userPassword,jdbcType=VARCHAR},
+      USER_NO = #{userNo,jdbcType=VARCHAR},
+      USER_STATUS = #{userStatus,jdbcType=CHAR},
+      USER_CREATE_DATE = #{userCreateDate,jdbcType=DATE},
+      USER_UPDATE_DATE = #{userUpdateDate,jdbcType=DATE}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

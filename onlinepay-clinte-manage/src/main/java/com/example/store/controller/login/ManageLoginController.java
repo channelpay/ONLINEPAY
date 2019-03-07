@@ -1,8 +1,6 @@
 package com.example.store.controller.login;
 
 import javax.servlet.http.HttpServletRequest;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
@@ -11,6 +9,8 @@ import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,9 +27,7 @@ import com.example.store.controller.base.ManageBaseController;
 @Controller
 public class ManageLoginController extends ManageBaseController {
 
-    private static final Log logger = LogFactory.getLog(ManageLoginController.class);
-
-
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
      * 跳转登录页面 get 跳转登陆页面
@@ -39,7 +37,7 @@ public class ManageLoginController extends ManageBaseController {
     @RequestMapping(value = "/toLogin", method = RequestMethod.GET)
     public ModelAndView toLoginManage(HttpServletRequest request, ModelMap model) {
         String ipAddress = request.getRemoteAddr();
-        logger.info("(不考虑nginx 反向代理)当前登录的IP是：" + ipAddress);
+       //logger.info("(不考虑nginx 反向代理)当前登录的IP是：" + ipAddress);
         ModelAndView moView = new ModelAndView();
         moView.setViewName("/html/manage/ManageLogin");
         return moView;
@@ -52,13 +50,13 @@ public class ManageLoginController extends ManageBaseController {
      */
     @RequestMapping(value = "/toLogin", method = RequestMethod.POST)
     public String loginManage(String username, String password, HttpServletRequest request, ModelMap model) {
-        logger.info("用户登陆信息是：" + username + "密码信息：" + password);
+        //logger.info("用户登陆信息是：" + username + "密码信息：" + password);
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, password);
         try {
             subject.login(usernamePasswordToken);
         } catch (UnknownAccountException user) { // 未知用户
-            logger.info("对用户[" + username + "]进行登录验证..验证未通过,未知账户");
+            //logger.info("对用户[" + username + "]进行登录验证..验证未通过,未知账户");
             model.addAttribute("message", "用户名输入有误");
         } catch (IncorrectCredentialsException ics) { // 未知用户
             logger.info("对用户[" + username + "]进行验证..验证未通过,凭证验证错误");
@@ -108,7 +106,7 @@ public class ManageLoginController extends ManageBaseController {
     @RequestMapping(value = "/toFailed", method = RequestMethod.GET)
     public ModelAndView toFailed(HttpServletRequest request) {
         String ipAddress = request.getRemoteAddr();
-        logger.info("(不考虑nginx 反向代理)当前登录的IP是：" + ipAddress);
+        //logger.info("(不考虑nginx 反向代理)当前登录的IP是：" + ipAddress);
         ModelAndView moView = new ModelAndView();
         moView.setViewName("html/manage/ManageLogin");// 成功跳转到主页
         return moView;

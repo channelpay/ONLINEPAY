@@ -18,7 +18,7 @@ public class HystrixConfig {
         registrationBean.setServlet(servlet);
         //是否启用该registrationBean
         registrationBean.setEnabled(true);
-        registrationBean.addUrlMappings("/hystrix.stream");
+        registrationBean.addUrlMappings("");
         return registrationBean;
     }
 

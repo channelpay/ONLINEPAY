@@ -2,6 +2,7 @@ package com.example.store.service.agent;
 
 import java.util.Map;
 import com.example.store.model.agent.AgentParam;
+import com.example.store.model.sale.SaleInfo;
 
 /**
  * 代理商登录业务处理
@@ -14,4 +15,5 @@ public interface IAgentLoginService {
     AgentParam findUserName(String username);
 
     String addAgentParam(Map<String, String> agentParam);
+
 }

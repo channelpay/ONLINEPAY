@@ -7,26 +7,50 @@
       <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
       <ul class="layui-nav layui-nav-tree"  lay-filter="test">
         <li class="layui-nav-item layui-nav-itemed">
-          <a class="" href="javascript:;">代理商管理</a>
+          <a class="" href="javascript:;">代理管理</a>
           <dl class="layui-nav-child">
-            <dd><a href="javascript:;">代理商查询</a></dd>
-            <dd><a href="javascript:;">代理商入网</a></dd>
-            <dd><a href="javascript:;">代理商变更</a></dd>
-            <dd><a href="javascript:;">代理商变更</a></dd>
-            <dd><a href="javascript:;">代理商变更</a></dd>
-            <dd><a href="">超链接</a></dd>
+            <dd><a href="/common/agent/addAgent">新增代理</a></dd>
+            <dd><a href="/common/agent/agentDetail">查询代理</a></dd>
           </dl>
         </li>
         <li class="layui-nav-item">
-          <a href="javascript:;">解决方案</a>
+          <a href="javascript:;">商户管理</a>
           <dl class="layui-nav-child">
-            <dd><a href="javascript:;">列表一</a></dd>
-            <dd><a href="javascript:;">列表二</a></dd>
-            <dd><a href="">超链接</a></dd>
+            <dd><a href="/common/merchant/addMerchant">商户新增</a></dd>
+            <dd><a href="/common/merchant/merchantDetail">商户信息</a></dd>
           </dl>
         </li>
-        <li class="layui-nav-item"><a href="">云市场</a></li>
-        <li class="layui-nav-item"><a href="">发布商品</a></li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">运营管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="/common/operation/addOperation">员工新增</a></dd>
+            <dd><a href="/common/operation/operationDetail">员工信息</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">结算管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="/common/settle/channelSettle">通道结算</a></dd>
+            <dd><a href="/common/settle/agentSettle">代理结算</a></dd>
+            <dd><a href="/common/settle/merchantSettle">商户结算</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">路由管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="/common/route/merchantRoute">商户路由</a></dd>
+            <dd><a href="/common/route/agentRoute">代理路由</a></dd>
+            <dd><a href="/common/route/channelRoute">通道路由</a></dd>
+            <dd><a href="/common/route/bankRoute">银行路由</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">对账管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="/common/reconcile/checkAccount">通道对账</a></dd>
+            <dd><a href="/common/reconcile/checkAccountDetail">对账信息</a></dd>
+          </dl>
+        </li>
       </ul>
     </div>
   </div>

@@ -18,7 +18,7 @@
 						<label class="layui-form-label"><i class="layui-icon layui-icon-cellphone" style="font-size: 42px; color: #1E9FFF;"></i>
 						</label>
 						<div class="layui-input-inline">
-							<input type="text" name="username" placeholder="请输入手机号码" autocomplete="off" class="layui-input" id="username"
+							<input type="text" name="username" placeholder="手机号码/邮箱/用户名" autocomplete="off" class="layui-input" id="username"
 							 lay-verify="username"></input>
 						</div>
 					</div>
@@ -60,9 +60,9 @@
 			// 自定义验证规则
 			form.verify({
 				username: function(value, item) { //value：表单的值、item：表单的DOM对象
-						if (!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)) {
-							return '用户名不能有特殊字符';
-						}
+						// if (!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)) {
+						// 	return '用户名不能有特殊字符';
+						// }
 						if (/(^\_)|(\__)|(\_+$)/.test(value)) {
 							return '用户名首尾不能出现下划线\'_\'';
 						}

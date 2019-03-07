@@ -7,6 +7,10 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,6 +22,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SimpleFilter implements Filter {
 
+    private final  static Logger logger = LoggerFactory.getLogger(SimpleFilter.class);
     @Override
     public void destroy() {
 
@@ -29,8 +34,8 @@ public class SimpleFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
             throws IOException, ServletException {
-        System.out.println("拦截器获取到的ip    host：" + request.getRemoteHost());
-        System.out.println("拦截器获取到的ip address：" + request.getRemoteAddr());
+        logger.info("拦截器获取到的ip    host：" + request.getRemoteHost());
+        logger.info("拦截器获取到的ip address：" + request.getRemoteAddr());
         filterChain.doFilter(request, response);
     }
 

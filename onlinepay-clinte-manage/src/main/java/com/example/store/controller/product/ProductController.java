@@ -53,7 +53,7 @@ public class ProductController {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         HttpEntity<String> entity = new HttpEntity<>(headers);
-        System.out.println("请求到restTemplate ：" + LocalDateTime.now());
+        //System.out.println("请求到restTemplate ：" + LocalDateTime.now());
         return restTemplate
                 .exchange("http://localhost:8080/getProduct", HttpMethod.GET, entity, String.class)
                 .getBody();

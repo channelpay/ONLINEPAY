@@ -22,20 +22,6 @@ public class ShiroConfigUtil {
 
     @Bean
     public ShiroFilterFactoryBean shiroFactory(org.apache.shiro.mgt.SecurityManager securityManager) {
-
-        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-
-        shiroFilterFactoryBean.setSecurityManager(securityManager);
-        // 如果不设置默认会自动寻找web 工程下的login
-        shiroFilterFactoryBean.setLoginUrl("/toLogin");
-        // 登陆成功之后显示的url
-        shiroFilterFactoryBean.setSuccessUrl("/manage/manageMenu");// 登陆成功跳转地址
-        // 认证失败页面配置
-        shiroFilterFactoryBean.setUnauthorizedUrl("/toFailed");
-        // 配置拦截器 string
-        Map<String, Filter> filter = new HashMap<String, Filter>();
-        filter.put("authc", new ShiroSuccessUtil());
-        
         // 配置拦截器 string
         Map<String, String> filterString = new HashMap<String, String>();
         // 配置不会被拦截的连接顺序判断
@@ -46,9 +32,22 @@ public class ShiroConfigUtil {
         // <!-- 过滤链定义，从上向下顺序执行，一般将/**放在最为下边 -->:这是一个坑呢，一不小心代码就不好使了;
         // <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
         filterString.put("/**", "authc");
-        
+        // 配置拦截器 string
+        Map<String, Filter> filter = new HashMap<String, Filter>();
+        filter.put("authc", new ShiroSuccessUtil());
+
+        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
+        // 如果不设置默认会自动寻找web 工程下的login
+        shiroFilterFactoryBean.setLoginUrl("/toLogin");
+        // 登陆成功之后显示的url
+        shiroFilterFactoryBean.setSuccessUrl("/manage/manageMenu");// 登陆成功跳转地址
+        // 认证失败页面配置
+        shiroFilterFactoryBean.setUnauthorizedUrl("/toFailed");
+        shiroFilterFactoryBean.setSecurityManager(securityManager);
+
         shiroFilterFactoryBean.setFilters(filter);
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterString);
+
         return shiroFilterFactoryBean;
     }
 

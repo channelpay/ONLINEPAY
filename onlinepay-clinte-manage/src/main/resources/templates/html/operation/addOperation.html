@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<!--head部分-->
+<head th:include="html/fragments/head :: headMenu" th:with="title='后台管理'"></head>
+<body class="layui-layout-body">
+
+<div class="layui-layout layui-layout-admin">
+
+    <!--此处引入顶栏  -->
+    <div th:replace="html/fragments/topMenu :: topMenu"></div>
+    <!--此处引入边栏  -->
+    <div th:replace="html/fragments/leftMenu :: leftMenu"></div>
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div class="layui-form-label-col">
+            <form class="layui-form" action="/toLogin" id="loginForm" method="POST">
+                <div class="layui-form-item">
+                    <div class="layui-colla-title layui-bg-green">添加系统运维人员</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">登录用户名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input" id="username"
+                               lay-verify="username"></input>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">角色选择</label>
+                    <div class="layui-input-block">
+                        <input type="checkbox" name="like[write]" title="技术研发">
+                        <input type="checkbox" name="like[read]" title="技术支持" checked>
+                        <input type="checkbox" name="like[dai]" title="产品运营">
+                        <input type="checkbox" name="like[dai]" title="业务运营">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">登录手机号</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="userphone" placeholder="请输入手机号码" autocomplete="off" class="layui-input" id="userphone"
+                               lay-verify="userphone"></input>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">登录邮箱</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="useremail" placeholder="请输入邮箱" autocomplete="off" class="layui-input" id="useremail"
+                               lay-verify="useremail"></input>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">登录用户名</label>
+                    <div class="layui-input-inline">
+                        <input type="password" name="password" lay-verify="password" placeholder="请输入登录密码" autocomplete="off" class="layui-input"></input>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">验证短信</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="requestCode" lay-verify="" placeholder="请输入验证码" autocomplete="off" class="layui-input"></input>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"></label>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn"  lay-submit lay-filter="requestApiCode">验证码</button>
+                        <button class="layui-btn"  lay-submit lay-filter="requestApiLogin">确认添加</button>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"></label>
+                    <label class="layui-input-inline" th:text="${message}" style="color: red;text-align: left: ;"></label>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--此处引入底部渲染内容  -->
+    <div th:replace="html/fragments/footerMenu ::footerMenu"></div>
+</div>
+<script type="text/javascript">
+    layui.use(['element', 'form'], function() {
+        var form = layui.form,
+            element = layui.element,
+            $ = layui.jquery;
+
+    })
+</script>
+</body>
+</html>

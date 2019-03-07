@@ -5,11 +5,11 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import com.example.store.BookstoreApplication;
+import com.example.store.ManageApplication;
 import com.example.store.config.activemq.Producer;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = BookstoreApplication.class)
+@SpringBootTest(classes = ManageApplication.class)
 public class ActiveMq {
 
     @Autowired

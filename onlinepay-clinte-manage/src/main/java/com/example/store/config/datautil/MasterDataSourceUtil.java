@@ -1,11 +1,12 @@
 package com.example.store.config.datautil;
 
 import javax.sql.DataSource;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -23,12 +24,13 @@ import com.alibaba.druid.pool.DruidDataSource;
 @MapperScan(basePackages = {MasterDataSourceUtil.MASTER_DATA_PACKAGE},
         sqlSessionFactoryRef = "masterSqlSessionFactory")
 public class MasterDataSourceUtil {
-    private static final Log logger = LogFactory.getLog(MasterDataSourceUtil.class);
+
+    Logger logger = LoggerFactory.getLogger(this.getClass());
     /**
      * 精确到主数据源的配置，以便和其他数据源分开
      */
     protected static final String MASTER_DATA_PACKAGE = "com.example.store.dao";
-    private static final String MASTER_DATA_MAPPER = "classpath:mapper/*.xml";
+    private static final String MASTER_DATA_MAPPER = "classpath:mapper/**/*.xml";
 
     @Value("${spring.datasource.master.jdbcUrl}")
     private String jdbcUrl;
@@ -52,10 +54,9 @@ public class MasterDataSourceUtil {
     public DataSource masterDataSource() {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setDriverClassName(driverClass);
-        dataSource.setUrl(jdbcUrl);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
-        logger.info("获取主数据库连接成功：" + jdbcUrl);
+        dataSource.setUrl(jdbcUrl);
         return dataSource;
     }
 
@@ -85,6 +86,7 @@ public class MasterDataSourceUtil {
         sessionFactory.setDataSource(dataSource);
         sessionFactory.setMapperLocations(
                 new PathMatchingResourcePatternResolver().getResources(MASTER_DATA_MAPPER));
+        logger.info("master:connect()","主数据源加载成功：");
         return sessionFactory.getObject();
     }
 }

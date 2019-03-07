@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<!--head部分-->
+<head th:include="html/fragments/head :: headMenu" th:with="title='后台管理'"></head>
+<body class="layui-layout-body">
+
+<div class="layui-layout layui-layout-admin">
+
+    <!--此处引入顶栏  -->
+    <div th:replace="html/fragments/topMenu :: topMenu"></div>
+    <!--此处引入边栏  -->
+    <div th:replace="html/fragments/leftMenu :: leftMenu"></div>
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div class="layui-form-item">
+            <div class="layui-colla-title layui-bg-green">员工信息详情</div>
+        </div>
+        <table class="layui-hide" id="operationDetail" lay-filter="operationDetail"></table>
+
+        <script type="text/html" id="toolbarOperation">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+                <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+                <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+            </div>
+        </script>
+
+        <script type="text/html" id="toolbarEdit">
+            <a class="layui-btn layui-btn-xs" lay-event="edit">冻结</a>
+            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">解冻</a>
+        </script>
+
+        <script type="text/html" id="checkboxStatus">
+            <!-- 这里的 checked 的状态只是演示 -->
+            <input type="checkbox" name="lock" value="{{d.id}}" title="锁定" lay-filter="lockDemo" {{ d.id == 10006 ? 'checked' : '' }}>
+        </script>
+
+    </div>
+    <!--此处引入底部渲染内容  -->
+    <div th:replace="html/fragments/footerMenu ::footerMenu"></div>
+</div>
+<script type="text/javascript" th:inline="none"> /* 解决：Could not parse as expression: th:inline="none""*/
+    layui.use(['element', 'table'], function() {
+        var form = layui.form,
+            table = layui.table,
+            $ = layui.jquery;
+        /* 展示用户数据表*/
+        table.render({
+            elem: '#operationDetail',
+            url: '/operation/getAllOperation',
+            toolbar: '#toolbarOperation',
+            page: true,
+            title: '用户信息表',
+            cols: [[
+                {field: 'id', title: '用户ID', sort: true, fixed: 'left',width: 80},
+                {field: 'userNo', title: '用户编号', sort: true, fixed: 'left',width: 120},
+                {field: 'userName', title: '用户姓名', width: 150},
+                {field: 'userEmail', title: '用户邮箱', width: 150 },
+                {field: 'userPhone', title: '用户手机号', width: 150},
+                {field: 'userCreateDate', title: '用户创建日期', width: 150},
+                {field: 'userUpdateDate', title: '用户修改日期', width: 150},
+                {field: 'userStatus', title: '用户状态', width: 150},
+                {field:'lock', title:'是否冻结', width:110, templet: '#checkboxTpl', unresize: true}
+            ]]
+            // data: [{
+            //     "id": "1000"
+            //     ,"userNo": "00001"
+            //     ,"userName": "小样ONEC"
+            //     ,"userEmail": "2650020302@qq.com"
+            //     ,"userPhone": "15611321516"
+            //     ,"userCreateDate": "2018-09-12"
+            //     ,"userUpdateDate": "2018-09-12"
+            //     ,"userStatus": "userStatus"
+            // }]
+
+        });
+    })
+</script>
+</body>
+</html>
