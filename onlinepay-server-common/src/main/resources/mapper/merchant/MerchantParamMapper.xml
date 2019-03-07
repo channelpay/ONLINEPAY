@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.store.dao.merchant.MerchantParamMapper">
+  <resultMap id="BaseResultMap" type="com.example.store.model.merchant.MerchantParam">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="MERCHANT_ID" jdbcType="INTEGER" property="merchantId" />
+    <result column="MERCHANT_DESKEY" jdbcType="VARCHAR" property="merchantDeskey" />
+    <result column="MERCHANT_SIGNKEY" jdbcType="VARCHAR" property="merchantSignkey" />
+    <result column="MERCAHNT_CREATE_DATE" jdbcType="TIMESTAMP" property="mercahntCreateDate" />
+    <result column="MERCAHNT_UPDATE_DATE" jdbcType="TIMESTAMP" property="mercahntUpdateDate" />
+    <result column="MERCAHNT_EXPENDS" jdbcType="VARCHAR" property="mercahntExpends" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, MERCHANT_ID, MERCHANT_DESKEY, MERCHANT_SIGNKEY, MERCAHNT_CREATE_DATE, MERCAHNT_UPDATE_DATE, 
+    MERCAHNT_EXPENDS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pay_merchant_param
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pay_merchant_param
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.store.model.merchant.MerchantParam">
+    insert into pay_merchant_param (ID, MERCHANT_ID, MERCHANT_DESKEY, 
+      MERCHANT_SIGNKEY, MERCAHNT_CREATE_DATE, 
+      MERCAHNT_UPDATE_DATE, MERCAHNT_EXPENDS)
+    values (#{id,jdbcType=INTEGER}, #{merchantId,jdbcType=INTEGER}, #{merchantDeskey,jdbcType=VARCHAR}, 
+      #{merchantSignkey,jdbcType=VARCHAR}, #{mercahntCreateDate,jdbcType=TIMESTAMP}, 
+      #{mercahntUpdateDate,jdbcType=TIMESTAMP}, #{mercahntExpends,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.store.model.merchant.MerchantParam">
+    insert into pay_merchant_param
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="merchantId != null">
+        MERCHANT_ID,
+      </if>
+      <if test="merchantDeskey != null">
+        MERCHANT_DESKEY,
+      </if>
+      <if test="merchantSignkey != null">
+        MERCHANT_SIGNKEY,
+      </if>
+      <if test="mercahntCreateDate != null">
+        MERCAHNT_CREATE_DATE,
+      </if>
+      <if test="mercahntUpdateDate != null">
+        MERCAHNT_UPDATE_DATE,
+      </if>
+      <if test="mercahntExpends != null">
+        MERCAHNT_EXPENDS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantDeskey != null">
+        #{merchantDeskey,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantSignkey != null">
+        #{merchantSignkey,jdbcType=VARCHAR},
+      </if>
+      <if test="mercahntCreateDate != null">
+        #{mercahntCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mercahntUpdateDate != null">
+        #{mercahntUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mercahntExpends != null">
+        #{mercahntExpends,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.store.model.merchant.MerchantParam">
+    update pay_merchant_param
+    <set>
+      <if test="merchantId != null">
+        MERCHANT_ID = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantDeskey != null">
+        MERCHANT_DESKEY = #{merchantDeskey,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantSignkey != null">
+        MERCHANT_SIGNKEY = #{merchantSignkey,jdbcType=VARCHAR},
+      </if>
+      <if test="mercahntCreateDate != null">
+        MERCAHNT_CREATE_DATE = #{mercahntCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mercahntUpdateDate != null">
+        MERCAHNT_UPDATE_DATE = #{mercahntUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mercahntExpends != null">
+        MERCAHNT_EXPENDS = #{mercahntExpends,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.store.model.merchant.MerchantParam">
+    update pay_merchant_param
+    set MERCHANT_ID = #{merchantId,jdbcType=INTEGER},
+      MERCHANT_DESKEY = #{merchantDeskey,jdbcType=VARCHAR},
+      MERCHANT_SIGNKEY = #{merchantSignkey,jdbcType=VARCHAR},
+      MERCAHNT_CREATE_DATE = #{mercahntCreateDate,jdbcType=TIMESTAMP},
+      MERCAHNT_UPDATE_DATE = #{mercahntUpdateDate,jdbcType=TIMESTAMP},
+      MERCAHNT_EXPENDS = #{mercahntExpends,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.store.model.merchant.MerchantParam">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="MERCHANT_ID" jdbcType="INTEGER" property="merchantId" />
+    <result column="MERCHANT_DESKEY" jdbcType="VARCHAR" property="merchantDeskey" />
+    <result column="MERCHANT_SIGNKEY" jdbcType="VARCHAR" property="merchantSignkey" />
+    <result column="MERCAHNT_CREATE_DATE" jdbcType="TIMESTAMP" property="mercahntCreateDate" />
+    <result column="MERCAHNT_UPDATE_DATE" jdbcType="TIMESTAMP" property="mercahntUpdateDate" />
+    <result column="MERCAHNT_EXPENDS" jdbcType="VARCHAR" property="mercahntExpends" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, MERCHANT_ID, MERCHANT_DESKEY, MERCHANT_SIGNKEY, MERCAHNT_CREATE_DATE, MERCAHNT_UPDATE_DATE, 
+    MERCAHNT_EXPENDS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pay_merchant_param
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pay_merchant_param
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.store.model.merchant.MerchantParam">
+    insert into pay_merchant_param (ID, MERCHANT_ID, MERCHANT_DESKEY, 
+      MERCHANT_SIGNKEY, MERCAHNT_CREATE_DATE, 
+      MERCAHNT_UPDATE_DATE, MERCAHNT_EXPENDS)
+    values (#{id,jdbcType=INTEGER}, #{merchantId,jdbcType=INTEGER}, #{merchantDeskey,jdbcType=VARCHAR}, 
+      #{merchantSignkey,jdbcType=VARCHAR}, #{mercahntCreateDate,jdbcType=TIMESTAMP}, 
+      #{mercahntUpdateDate,jdbcType=TIMESTAMP}, #{mercahntExpends,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.store.model.merchant.MerchantParam">
+    insert into pay_merchant_param
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="merchantId != null">
+        MERCHANT_ID,
+      </if>
+      <if test="merchantDeskey != null">
+        MERCHANT_DESKEY,
+      </if>
+      <if test="merchantSignkey != null">
+        MERCHANT_SIGNKEY,
+      </if>
+      <if test="mercahntCreateDate != null">
+        MERCAHNT_CREATE_DATE,
+      </if>
+      <if test="mercahntUpdateDate != null">
+        MERCAHNT_UPDATE_DATE,
+      </if>
+      <if test="mercahntExpends != null">
+        MERCAHNT_EXPENDS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantDeskey != null">
+        #{merchantDeskey,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantSignkey != null">
+        #{merchantSignkey,jdbcType=VARCHAR},
+      </if>
+      <if test="mercahntCreateDate != null">
+        #{mercahntCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mercahntUpdateDate != null">
+        #{mercahntUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mercahntExpends != null">
+        #{mercahntExpends,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.store.model.merchant.MerchantParam">
+    update pay_merchant_param
+    <set>
+      <if test="merchantId != null">
+        MERCHANT_ID = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantDeskey != null">
+        MERCHANT_DESKEY = #{merchantDeskey,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantSignkey != null">
+        MERCHANT_SIGNKEY = #{merchantSignkey,jdbcType=VARCHAR},
+      </if>
+      <if test="mercahntCreateDate != null">
+        MERCAHNT_CREATE_DATE = #{mercahntCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mercahntUpdateDate != null">
+        MERCAHNT_UPDATE_DATE = #{mercahntUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mercahntExpends != null">
+        MERCAHNT_EXPENDS = #{mercahntExpends,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.store.model.merchant.MerchantParam">
+    update pay_merchant_param
+    set MERCHANT_ID = #{merchantId,jdbcType=INTEGER},
+      MERCHANT_DESKEY = #{merchantDeskey,jdbcType=VARCHAR},
+      MERCHANT_SIGNKEY = #{merchantSignkey,jdbcType=VARCHAR},
+      MERCAHNT_CREATE_DATE = #{mercahntCreateDate,jdbcType=TIMESTAMP},
+      MERCAHNT_UPDATE_DATE = #{mercahntUpdateDate,jdbcType=TIMESTAMP},
+      MERCAHNT_EXPENDS = #{mercahntExpends,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.store.model.merchant.MerchantParam">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="MERCHANT_ID" jdbcType="INTEGER" property="merchantId" />
+    <result column="MERCHANT_DESKEY" jdbcType="VARCHAR" property="merchantDeskey" />
+    <result column="MERCHANT_SIGNKEY" jdbcType="VARCHAR" property="merchantSignkey" />
+    <result column="MERCAHNT_CREATE_DATE" jdbcType="TIMESTAMP" property="mercahntCreateDate" />
+    <result column="MERCAHNT_UPDATE_DATE" jdbcType="TIMESTAMP" property="mercahntUpdateDate" />
+    <result column="MERCAHNT_EXPENDS" jdbcType="VARCHAR" property="mercahntExpends" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, MERCHANT_ID, MERCHANT_DESKEY, MERCHANT_SIGNKEY, MERCAHNT_CREATE_DATE, MERCAHNT_UPDATE_DATE, 
+    MERCAHNT_EXPENDS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pay_merchant_param
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pay_merchant_param
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.store.model.merchant.MerchantParam">
+    insert into pay_merchant_param (ID, MERCHANT_ID, MERCHANT_DESKEY, 
+      MERCHANT_SIGNKEY, MERCAHNT_CREATE_DATE, 
+      MERCAHNT_UPDATE_DATE, MERCAHNT_EXPENDS)
+    values (#{id,jdbcType=INTEGER}, #{merchantId,jdbcType=INTEGER}, #{merchantDeskey,jdbcType=VARCHAR}, 
+      #{merchantSignkey,jdbcType=VARCHAR}, #{mercahntCreateDate,jdbcType=TIMESTAMP}, 
+      #{mercahntUpdateDate,jdbcType=TIMESTAMP}, #{mercahntExpends,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.store.model.merchant.MerchantParam">
+    insert into pay_merchant_param
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="merchantId != null">
+        MERCHANT_ID,
+      </if>
+      <if test="merchantDeskey != null">
+        MERCHANT_DESKEY,
+      </if>
+      <if test="merchantSignkey != null">
+        MERCHANT_SIGNKEY,
+      </if>
+      <if test="mercahntCreateDate != null">
+        MERCAHNT_CREATE_DATE,
+      </if>
+      <if test="mercahntUpdateDate != null">
+        MERCAHNT_UPDATE_DATE,
+      </if>
+      <if test="mercahntExpends != null">
+        MERCAHNT_EXPENDS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantDeskey != null">
+        #{merchantDeskey,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantSignkey != null">
+        #{merchantSignkey,jdbcType=VARCHAR},
+      </if>
+      <if test="mercahntCreateDate != null">
+        #{mercahntCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mercahntUpdateDate != null">
+        #{mercahntUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mercahntExpends != null">
+        #{mercahntExpends,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.store.model.merchant.MerchantParam">
+    update pay_merchant_param
+    <set>
+      <if test="merchantId != null">
+        MERCHANT_ID = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantDeskey != null">
+        MERCHANT_DESKEY = #{merchantDeskey,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantSignkey != null">
+        MERCHANT_SIGNKEY = #{merchantSignkey,jdbcType=VARCHAR},
+      </if>
+      <if test="mercahntCreateDate != null">
+        MERCAHNT_CREATE_DATE = #{mercahntCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mercahntUpdateDate != null">
+        MERCAHNT_UPDATE_DATE = #{mercahntUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mercahntExpends != null">
+        MERCAHNT_EXPENDS = #{mercahntExpends,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.store.model.merchant.MerchantParam">
+    update pay_merchant_param
+    set MERCHANT_ID = #{merchantId,jdbcType=INTEGER},
+      MERCHANT_DESKEY = #{merchantDeskey,jdbcType=VARCHAR},
+      MERCHANT_SIGNKEY = #{merchantSignkey,jdbcType=VARCHAR},
+      MERCAHNT_CREATE_DATE = #{mercahntCreateDate,jdbcType=TIMESTAMP},
+      MERCAHNT_UPDATE_DATE = #{mercahntUpdateDate,jdbcType=TIMESTAMP},
+      MERCAHNT_EXPENDS = #{mercahntExpends,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

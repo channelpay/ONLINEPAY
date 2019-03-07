@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.store.dao.BookStoreManageMapper">
+	<resultMap id="BaseResultMap" type="com.example.store.model.BookStoreManage">
+		<id column="book_manage_id" jdbcType="BIGINT" property="bookManageId" />
+		<result column="book_manage_name" jdbcType="VARCHAR" property="bookManageName" />
+		<result column="book_manage_birth" jdbcType="DATE" property="bookManageBirth" />
+		<result column="book_manage_phone" jdbcType="VARCHAR" property="bookManagePhone" />
+		<result column="book_manage_address" jdbcType="VARCHAR"
+			property="bookManageAddress" />
+		<result column="book_manage_primarykey" jdbcType="VARCHAR"
+			property="bookManagePrimarykey" />
+		<result column="book_manage_password" jdbcType="VARCHAR"
+			property="bookManagePassword" />
+		<result column="book_manage_messid" jdbcType="BIGINT" property="bookManageMessid" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		book_manage_id, book_manage_name, book_manage_birth, book_manage_phone,
+		book_manage_address,
+		book_manage_primarykey, book_manage_password, book_manage_messid
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from book_store_manage
+		where book_manage_id = #{bookManageId,jdbcType=BIGINT}
+	</select>
+	<select id="selectByManagePhonePassword" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from book_store_manage
+		where book_manage_phone = #{bookManagePhone,jdbcType=VARCHAR} and book_manage_password = #{bookManagePassword,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from book_store_manage
+		where book_manage_id = #{bookManageId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.example.store.model.BookStoreManage">
+		insert into book_store_manage (book_manage_id, book_manage_name,
+		book_manage_birth,
+		book_manage_phone, book_manage_address, book_manage_primarykey,
+		book_manage_password, book_manage_messid)
+		values (#{bookManageId,jdbcType=BIGINT}, #{bookManageName,jdbcType=VARCHAR},
+		#{bookManageBirth,jdbcType=DATE},
+		#{bookManagePhone,jdbcType=VARCHAR}, #{bookManageAddress,jdbcType=VARCHAR},
+		#{bookManagePrimarykey,jdbcType=VARCHAR},
+		#{bookManagePassword,jdbcType=VARCHAR},
+		#{bookManageMessid,jdbcType=BIGINT})
+	</insert>
+	<insert id="insertSelective" parameterType="com.example.store.model.BookStoreManage">
+		insert into book_store_manage
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="bookManageId != null">
+				book_manage_id,
+			</if>
+			<if test="bookManageName != null">
+				book_manage_name,
+			</if>
+			<if test="bookManageBirth != null">
+				book_manage_birth,
+			</if>
+			<if test="bookManagePhone != null">
+				book_manage_phone,
+			</if>
+			<if test="bookManageAddress != null">
+				book_manage_address,
+			</if>
+			<if test="bookManagePrimarykey != null">
+				book_manage_primarykey,
+			</if>
+			<if test="bookManagePassword != null">
+				book_manage_password,
+			</if>
+			<if test="bookManageMessid != null">
+				book_manage_messid,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="bookManageId != null">
+				#{bookManageId,jdbcType=BIGINT},
+			</if>
+			<if test="bookManageName != null">
+				#{bookManageName,jdbcType=VARCHAR},
+			</if>
+			<if test="bookManageBirth != null">
+				#{bookManageBirth,jdbcType=DATE},
+			</if>
+			<if test="bookManagePhone != null">
+				#{bookManagePhone,jdbcType=VARCHAR},
+			</if>
+			<if test="bookManageAddress != null">
+				#{bookManageAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="bookManagePrimarykey != null">
+				#{bookManagePrimarykey,jdbcType=VARCHAR},
+			</if>
+			<if test="bookManagePassword != null">
+				#{bookManagePassword,jdbcType=VARCHAR},
+			</if>
+			<if test="bookManageMessid != null">
+				#{bookManageMessid,jdbcType=BIGINT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.example.store.model.BookStoreManage">
+		update book_store_manage
+		<set>
+			<if test="bookManageName != null">
+				book_manage_name = #{bookManageName,jdbcType=VARCHAR},
+			</if>
+			<if test="bookManageBirth != null">
+				book_manage_birth = #{bookManageBirth,jdbcType=DATE},
+			</if>
+			<if test="bookManagePhone != null">
+				book_manage_phone = #{bookManagePhone,jdbcType=VARCHAR},
+			</if>
+			<if test="bookManageAddress != null">
+				book_manage_address = #{bookManageAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="bookManagePrimarykey != null">
+				book_manage_primarykey = #{bookManagePrimarykey,jdbcType=VARCHAR},
+			</if>
+			<if test="bookManagePassword != null">
+				book_manage_password = #{bookManagePassword,jdbcType=VARCHAR},
+			</if>
+			<if test="bookManageMessid != null">
+				book_manage_messid = #{bookManageMessid,jdbcType=BIGINT},
+			</if>
+		</set>
+		where book_manage_id = #{bookManageId,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.example.store.model.BookStoreManage">
+		update book_store_manage
+		set book_manage_name = #{bookManageName,jdbcType=VARCHAR},
+		book_manage_birth = #{bookManageBirth,jdbcType=DATE},
+		book_manage_phone = #{bookManagePhone,jdbcType=VARCHAR},
+		book_manage_address = #{bookManageAddress,jdbcType=VARCHAR},
+		book_manage_primarykey = #{bookManagePrimarykey,jdbcType=VARCHAR},
+		book_manage_password = #{bookManagePassword,jdbcType=VARCHAR},
+		book_manage_messid = #{bookManageMessid,jdbcType=BIGINT}
+		where book_manage_id = #{bookManageId,jdbcType=BIGINT}
+	</update>
+</mapper>

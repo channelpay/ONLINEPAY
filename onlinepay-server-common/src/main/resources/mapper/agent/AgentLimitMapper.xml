@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.store.dao.agent.AgentLimitMapper">
+  <resultMap id="BaseResultMap" type="com.example.store.model.agent.AgentLimit">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="AGENT_ID" jdbcType="INTEGER" property="agentId" />
+    <result column="PRODUCT_ID" jdbcType="INTEGER" property="productId" />
+    <result column="MAX_AMOUNT" jdbcType="VARCHAR" property="maxAmount" />
+    <result column="MIN_AMOUNT" jdbcType="VARCHAR" property="minAmount" />
+    <result column="AGENT_T0_FEE" jdbcType="VARCHAR" property="agentT0Fee" />
+    <result column="AGENT_T1_FEE" jdbcType="VARCHAR" property="agentT1Fee" />
+    <result column="AGENT_FIX_FEE" jdbcType="VARCHAR" property="agentFixFee" />
+    <result column="AGENT_CREAT_DATE" jdbcType="TIMESTAMP" property="agentCreatDate" />
+    <result column="AGENT_UPATE_DATE" jdbcType="TIMESTAMP" property="agentUpateDate" />
+    <result column="AGENT_EXPENDS" jdbcType="VARCHAR" property="agentExpends" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, AGENT_ID, PRODUCT_ID, MAX_AMOUNT, MIN_AMOUNT, AGENT_T0_FEE, AGENT_T1_FEE, AGENT_FIX_FEE, 
+    AGENT_CREAT_DATE, AGENT_UPATE_DATE, AGENT_EXPENDS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pay_agent_limit
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pay_agent_limit
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.store.model.agent.AgentLimit">
+    insert into pay_agent_limit (ID, AGENT_ID, PRODUCT_ID, 
+      MAX_AMOUNT, MIN_AMOUNT, AGENT_T0_FEE, 
+      AGENT_T1_FEE, AGENT_FIX_FEE, AGENT_CREAT_DATE, 
+      AGENT_UPATE_DATE, AGENT_EXPENDS)
+    values (#{id,jdbcType=INTEGER}, #{agentId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, 
+      #{maxAmount,jdbcType=VARCHAR}, #{minAmount,jdbcType=VARCHAR}, #{agentT0Fee,jdbcType=VARCHAR}, 
+      #{agentT1Fee,jdbcType=VARCHAR}, #{agentFixFee,jdbcType=VARCHAR}, #{agentCreatDate,jdbcType=TIMESTAMP}, 
+      #{agentUpateDate,jdbcType=TIMESTAMP}, #{agentExpends,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.store.model.agent.AgentLimit">
+    insert into pay_agent_limit
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="agentId != null">
+        AGENT_ID,
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID,
+      </if>
+      <if test="maxAmount != null">
+        MAX_AMOUNT,
+      </if>
+      <if test="minAmount != null">
+        MIN_AMOUNT,
+      </if>
+      <if test="agentT0Fee != null">
+        AGENT_T0_FEE,
+      </if>
+      <if test="agentT1Fee != null">
+        AGENT_T1_FEE,
+      </if>
+      <if test="agentFixFee != null">
+        AGENT_FIX_FEE,
+      </if>
+      <if test="agentCreatDate != null">
+        AGENT_CREAT_DATE,
+      </if>
+      <if test="agentUpateDate != null">
+        AGENT_UPATE_DATE,
+      </if>
+      <if test="agentExpends != null">
+        AGENT_EXPENDS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="agentId != null">
+        #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null">
+        #{maxAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="minAmount != null">
+        #{minAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="agentT0Fee != null">
+        #{agentT0Fee,jdbcType=VARCHAR},
+      </if>
+      <if test="agentT1Fee != null">
+        #{agentT1Fee,jdbcType=VARCHAR},
+      </if>
+      <if test="agentFixFee != null">
+        #{agentFixFee,jdbcType=VARCHAR},
+      </if>
+      <if test="agentCreatDate != null">
+        #{agentCreatDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="agentUpateDate != null">
+        #{agentUpateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="agentExpends != null">
+        #{agentExpends,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.store.model.agent.AgentLimit">
+    update pay_agent_limit
+    <set>
+      <if test="agentId != null">
+        AGENT_ID = #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null">
+        MAX_AMOUNT = #{maxAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="minAmount != null">
+        MIN_AMOUNT = #{minAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="agentT0Fee != null">
+        AGENT_T0_FEE = #{agentT0Fee,jdbcType=VARCHAR},
+      </if>
+      <if test="agentT1Fee != null">
+        AGENT_T1_FEE = #{agentT1Fee,jdbcType=VARCHAR},
+      </if>
+      <if test="agentFixFee != null">
+        AGENT_FIX_FEE = #{agentFixFee,jdbcType=VARCHAR},
+      </if>
+      <if test="agentCreatDate != null">
+        AGENT_CREAT_DATE = #{agentCreatDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="agentUpateDate != null">
+        AGENT_UPATE_DATE = #{agentUpateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="agentExpends != null">
+        AGENT_EXPENDS = #{agentExpends,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.store.model.agent.AgentLimit">
+    update pay_agent_limit
+    set AGENT_ID = #{agentId,jdbcType=INTEGER},
+      PRODUCT_ID = #{productId,jdbcType=INTEGER},
+      MAX_AMOUNT = #{maxAmount,jdbcType=VARCHAR},
+      MIN_AMOUNT = #{minAmount,jdbcType=VARCHAR},
+      AGENT_T0_FEE = #{agentT0Fee,jdbcType=VARCHAR},
+      AGENT_T1_FEE = #{agentT1Fee,jdbcType=VARCHAR},
+      AGENT_FIX_FEE = #{agentFixFee,jdbcType=VARCHAR},
+      AGENT_CREAT_DATE = #{agentCreatDate,jdbcType=TIMESTAMP},
+      AGENT_UPATE_DATE = #{agentUpateDate,jdbcType=TIMESTAMP},
+      AGENT_EXPENDS = #{agentExpends,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

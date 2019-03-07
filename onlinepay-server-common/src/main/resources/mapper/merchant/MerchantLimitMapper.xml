@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.store.dao.merchant.MerchantLimitMapper">
+  <resultMap id="BaseResultMap" type="com.example.store.model.merchant.MerchantLimit">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="MERCHANT_ID" jdbcType="INTEGER" property="merchantId" />
+    <result column="PRODUCT_ID" jdbcType="INTEGER" property="productId" />
+    <result column="MAX_AMOUNT" jdbcType="DOUBLE" property="maxAmount" />
+    <result column="MIN_AMOUNT" jdbcType="DOUBLE" property="minAmount" />
+    <result column="MERCHANT_T0_FEE" jdbcType="DOUBLE" property="merchantT0Fee" />
+    <result column="MERCHANT_T1_FEE" jdbcType="DOUBLE" property="merchantT1Fee" />
+    <result column="MERCHANT_FIX_FEE" jdbcType="DOUBLE" property="merchantFixFee" />
+    <result column="MERCHANT_CREATE_DATE" jdbcType="TIMESTAMP" property="merchantCreateDate" />
+    <result column="MERCHANT_UPDATE_DATE" jdbcType="TIMESTAMP" property="merchantUpdateDate" />
+    <result column="MERCHANT_EXPLENDS" jdbcType="VARCHAR" property="merchantExplends" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, MERCHANT_ID, PRODUCT_ID, MAX_AMOUNT, MIN_AMOUNT, MERCHANT_T0_FEE, MERCHANT_T1_FEE, 
+    MERCHANT_FIX_FEE, MERCHANT_CREATE_DATE, MERCHANT_UPDATE_DATE, MERCHANT_EXPLENDS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pay_merchant_limit
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pay_merchant_limit
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.store.model.merchant.MerchantLimit">
+    insert into pay_merchant_limit (ID, MERCHANT_ID, PRODUCT_ID, 
+      MAX_AMOUNT, MIN_AMOUNT, MERCHANT_T0_FEE, 
+      MERCHANT_T1_FEE, MERCHANT_FIX_FEE, MERCHANT_CREATE_DATE, 
+      MERCHANT_UPDATE_DATE, MERCHANT_EXPLENDS)
+    values (#{id,jdbcType=INTEGER}, #{merchantId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, 
+      #{maxAmount,jdbcType=DOUBLE}, #{minAmount,jdbcType=DOUBLE}, #{merchantT0Fee,jdbcType=DOUBLE}, 
+      #{merchantT1Fee,jdbcType=DOUBLE}, #{merchantFixFee,jdbcType=DOUBLE}, #{merchantCreateDate,jdbcType=TIMESTAMP}, 
+      #{merchantUpdateDate,jdbcType=TIMESTAMP}, #{merchantExplends,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.store.model.merchant.MerchantLimit">
+    insert into pay_merchant_limit
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="merchantId != null">
+        MERCHANT_ID,
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID,
+      </if>
+      <if test="maxAmount != null">
+        MAX_AMOUNT,
+      </if>
+      <if test="minAmount != null">
+        MIN_AMOUNT,
+      </if>
+      <if test="merchantT0Fee != null">
+        MERCHANT_T0_FEE,
+      </if>
+      <if test="merchantT1Fee != null">
+        MERCHANT_T1_FEE,
+      </if>
+      <if test="merchantFixFee != null">
+        MERCHANT_FIX_FEE,
+      </if>
+      <if test="merchantCreateDate != null">
+        MERCHANT_CREATE_DATE,
+      </if>
+      <if test="merchantUpdateDate != null">
+        MERCHANT_UPDATE_DATE,
+      </if>
+      <if test="merchantExplends != null">
+        MERCHANT_EXPLENDS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null">
+        #{maxAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="minAmount != null">
+        #{minAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="merchantT0Fee != null">
+        #{merchantT0Fee,jdbcType=DOUBLE},
+      </if>
+      <if test="merchantT1Fee != null">
+        #{merchantT1Fee,jdbcType=DOUBLE},
+      </if>
+      <if test="merchantFixFee != null">
+        #{merchantFixFee,jdbcType=DOUBLE},
+      </if>
+      <if test="merchantCreateDate != null">
+        #{merchantCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merchantUpdateDate != null">
+        #{merchantUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merchantExplends != null">
+        #{merchantExplends,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.store.model.merchant.MerchantLimit">
+    update pay_merchant_limit
+    <set>
+      <if test="merchantId != null">
+        MERCHANT_ID = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null">
+        MAX_AMOUNT = #{maxAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="minAmount != null">
+        MIN_AMOUNT = #{minAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="merchantT0Fee != null">
+        MERCHANT_T0_FEE = #{merchantT0Fee,jdbcType=DOUBLE},
+      </if>
+      <if test="merchantT1Fee != null">
+        MERCHANT_T1_FEE = #{merchantT1Fee,jdbcType=DOUBLE},
+      </if>
+      <if test="merchantFixFee != null">
+        MERCHANT_FIX_FEE = #{merchantFixFee,jdbcType=DOUBLE},
+      </if>
+      <if test="merchantCreateDate != null">
+        MERCHANT_CREATE_DATE = #{merchantCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merchantUpdateDate != null">
+        MERCHANT_UPDATE_DATE = #{merchantUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merchantExplends != null">
+        MERCHANT_EXPLENDS = #{merchantExplends,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.store.model.merchant.MerchantLimit">
+    update pay_merchant_limit
+    set MERCHANT_ID = #{merchantId,jdbcType=INTEGER},
+      PRODUCT_ID = #{productId,jdbcType=INTEGER},
+      MAX_AMOUNT = #{maxAmount,jdbcType=DOUBLE},
+      MIN_AMOUNT = #{minAmount,jdbcType=DOUBLE},
+      MERCHANT_T0_FEE = #{merchantT0Fee,jdbcType=DOUBLE},
+      MERCHANT_T1_FEE = #{merchantT1Fee,jdbcType=DOUBLE},
+      MERCHANT_FIX_FEE = #{merchantFixFee,jdbcType=DOUBLE},
+      MERCHANT_CREATE_DATE = #{merchantCreateDate,jdbcType=TIMESTAMP},
+      MERCHANT_UPDATE_DATE = #{merchantUpdateDate,jdbcType=TIMESTAMP},
+      MERCHANT_EXPLENDS = #{merchantExplends,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.store.model.merchant.MerchantLimit">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="MERCHANT_ID" jdbcType="INTEGER" property="merchantId" />
+    <result column="PRODUCT_ID" jdbcType="INTEGER" property="productId" />
+    <result column="MAX_AMOUNT" jdbcType="DOUBLE" property="maxAmount" />
+    <result column="MIN_AMOUNT" jdbcType="DOUBLE" property="minAmount" />
+    <result column="MERCHANT_T0_FEE" jdbcType="DOUBLE" property="merchantT0Fee" />
+    <result column="MERCHANT_T1_FEE" jdbcType="DOUBLE" property="merchantT1Fee" />
+    <result column="MERCHANT_FIX_FEE" jdbcType="DOUBLE" property="merchantFixFee" />
+    <result column="MERCHANT_CREATE_DATE" jdbcType="TIMESTAMP" property="merchantCreateDate" />
+    <result column="MERCHANT_UPDATE_DATE" jdbcType="TIMESTAMP" property="merchantUpdateDate" />
+    <result column="MERCHANT_EXPLENDS" jdbcType="VARCHAR" property="merchantExplends" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, MERCHANT_ID, PRODUCT_ID, MAX_AMOUNT, MIN_AMOUNT, MERCHANT_T0_FEE, MERCHANT_T1_FEE, 
+    MERCHANT_FIX_FEE, MERCHANT_CREATE_DATE, MERCHANT_UPDATE_DATE, MERCHANT_EXPLENDS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pay_merchant_limit
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pay_merchant_limit
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.store.model.merchant.MerchantLimit">
+    insert into pay_merchant_limit (ID, MERCHANT_ID, PRODUCT_ID, 
+      MAX_AMOUNT, MIN_AMOUNT, MERCHANT_T0_FEE, 
+      MERCHANT_T1_FEE, MERCHANT_FIX_FEE, MERCHANT_CREATE_DATE, 
+      MERCHANT_UPDATE_DATE, MERCHANT_EXPLENDS)
+    values (#{id,jdbcType=INTEGER}, #{merchantId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, 
+      #{maxAmount,jdbcType=DOUBLE}, #{minAmount,jdbcType=DOUBLE}, #{merchantT0Fee,jdbcType=DOUBLE}, 
+      #{merchantT1Fee,jdbcType=DOUBLE}, #{merchantFixFee,jdbcType=DOUBLE}, #{merchantCreateDate,jdbcType=TIMESTAMP}, 
+      #{merchantUpdateDate,jdbcType=TIMESTAMP}, #{merchantExplends,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.store.model.merchant.MerchantLimit">
+    insert into pay_merchant_limit
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="merchantId != null">
+        MERCHANT_ID,
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID,
+      </if>
+      <if test="maxAmount != null">
+        MAX_AMOUNT,
+      </if>
+      <if test="minAmount != null">
+        MIN_AMOUNT,
+      </if>
+      <if test="merchantT0Fee != null">
+        MERCHANT_T0_FEE,
+      </if>
+      <if test="merchantT1Fee != null">
+        MERCHANT_T1_FEE,
+      </if>
+      <if test="merchantFixFee != null">
+        MERCHANT_FIX_FEE,
+      </if>
+      <if test="merchantCreateDate != null">
+        MERCHANT_CREATE_DATE,
+      </if>
+      <if test="merchantUpdateDate != null">
+        MERCHANT_UPDATE_DATE,
+      </if>
+      <if test="merchantExplends != null">
+        MERCHANT_EXPLENDS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null">
+        #{maxAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="minAmount != null">
+        #{minAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="merchantT0Fee != null">
+        #{merchantT0Fee,jdbcType=DOUBLE},
+      </if>
+      <if test="merchantT1Fee != null">
+        #{merchantT1Fee,jdbcType=DOUBLE},
+      </if>
+      <if test="merchantFixFee != null">
+        #{merchantFixFee,jdbcType=DOUBLE},
+      </if>
+      <if test="merchantCreateDate != null">
+        #{merchantCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merchantUpdateDate != null">
+        #{merchantUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merchantExplends != null">
+        #{merchantExplends,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.store.model.merchant.MerchantLimit">
+    update pay_merchant_limit
+    <set>
+      <if test="merchantId != null">
+        MERCHANT_ID = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null">
+        MAX_AMOUNT = #{maxAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="minAmount != null">
+        MIN_AMOUNT = #{minAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="merchantT0Fee != null">
+        MERCHANT_T0_FEE = #{merchantT0Fee,jdbcType=DOUBLE},
+      </if>
+      <if test="merchantT1Fee != null">
+        MERCHANT_T1_FEE = #{merchantT1Fee,jdbcType=DOUBLE},
+      </if>
+      <if test="merchantFixFee != null">
+        MERCHANT_FIX_FEE = #{merchantFixFee,jdbcType=DOUBLE},
+      </if>
+      <if test="merchantCreateDate != null">
+        MERCHANT_CREATE_DATE = #{merchantCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merchantUpdateDate != null">
+        MERCHANT_UPDATE_DATE = #{merchantUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merchantExplends != null">
+        MERCHANT_EXPLENDS = #{merchantExplends,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.store.model.merchant.MerchantLimit">
+    update pay_merchant_limit
+    set MERCHANT_ID = #{merchantId,jdbcType=INTEGER},
+      PRODUCT_ID = #{productId,jdbcType=INTEGER},
+      MAX_AMOUNT = #{maxAmount,jdbcType=DOUBLE},
+      MIN_AMOUNT = #{minAmount,jdbcType=DOUBLE},
+      MERCHANT_T0_FEE = #{merchantT0Fee,jdbcType=DOUBLE},
+      MERCHANT_T1_FEE = #{merchantT1Fee,jdbcType=DOUBLE},
+      MERCHANT_FIX_FEE = #{merchantFixFee,jdbcType=DOUBLE},
+      MERCHANT_CREATE_DATE = #{merchantCreateDate,jdbcType=TIMESTAMP},
+      MERCHANT_UPDATE_DATE = #{merchantUpdateDate,jdbcType=TIMESTAMP},
+      MERCHANT_EXPLENDS = #{merchantExplends,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

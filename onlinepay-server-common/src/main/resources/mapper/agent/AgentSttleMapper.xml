@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.store.dao.agent.AgentSttleMapper">
+  <resultMap id="BaseResultMap" type="com.example.store.model.agent.AgentSttle">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="AGENTID" jdbcType="INTEGER" property="agentid" />
+    <result column="AG_CARDNO" jdbcType="VARCHAR" property="agCardno" />
+    <result column="AG_NAME" jdbcType="VARCHAR" property="agName" />
+    <result column="AG_BANKCODE" jdbcType="VARCHAR" property="agBankcode" />
+    <result column="AG_BANKTYPE" jdbcType="VARCHAR" property="agBanktype" />
+    <result column="AG_BANKPROV" jdbcType="VARCHAR" property="agBankprov" />
+    <result column="AG_BANKCITY" jdbcType="VARCHAR" property="agBankcity" />
+    <result column="AG_BANKDISCOUNT" jdbcType="VARCHAR" property="agBankdiscount" />
+    <result column="AG_BANKNAME" jdbcType="VARCHAR" property="agBankname" />
+    <result column="AG_BANKBRANCH" jdbcType="VARCHAR" property="agBankbranch" />
+    <result column="AG_BANKSIMPLE" jdbcType="VARCHAR" property="agBanksimple" />
+    <result column="AG_CREATEDATE" jdbcType="DATE" property="agCreatedate" />
+    <result column="AG_UPDATEDATE" jdbcType="TIMESTAMP" property="agUpdatedate" />
+    <result column="AG_EXPENDS" jdbcType="VARCHAR" property="agExpends" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, AGENTID, AG_CARDNO, AG_NAME, AG_BANKCODE, AG_BANKTYPE, AG_BANKPROV, AG_BANKCITY, 
+    AG_BANKDISCOUNT, AG_BANKNAME, AG_BANKBRANCH, AG_BANKSIMPLE, AG_CREATEDATE, AG_UPDATEDATE, 
+    AG_EXPENDS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pay_agent_settle
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pay_agent_settle
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.store.model.agent.AgentSttle">
+    insert into pay_agent_settle (ID, AGENTID, AG_CARDNO, 
+      AG_NAME, AG_BANKCODE, AG_BANKTYPE, 
+      AG_BANKPROV, AG_BANKCITY, AG_BANKDISCOUNT, 
+      AG_BANKNAME, AG_BANKBRANCH, AG_BANKSIMPLE, 
+      AG_CREATEDATE, AG_UPDATEDATE, AG_EXPENDS
+      )
+    values (#{id,jdbcType=INTEGER}, #{agentid,jdbcType=INTEGER}, #{agCardno,jdbcType=VARCHAR}, 
+      #{agName,jdbcType=VARCHAR}, #{agBankcode,jdbcType=VARCHAR}, #{agBanktype,jdbcType=VARCHAR}, 
+      #{agBankprov,jdbcType=VARCHAR}, #{agBankcity,jdbcType=VARCHAR}, #{agBankdiscount,jdbcType=VARCHAR}, 
+      #{agBankname,jdbcType=VARCHAR}, #{agBankbranch,jdbcType=VARCHAR}, #{agBanksimple,jdbcType=VARCHAR}, 
+      #{agCreatedate,jdbcType=DATE}, #{agUpdatedate,jdbcType=TIMESTAMP}, #{agExpends,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.store.model.agent.AgentSttle">
+    insert into pay_agent_settle
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="agentid != null">
+        AGENTID,
+      </if>
+      <if test="agCardno != null">
+        AG_CARDNO,
+      </if>
+      <if test="agName != null">
+        AG_NAME,
+      </if>
+      <if test="agBankcode != null">
+        AG_BANKCODE,
+      </if>
+      <if test="agBanktype != null">
+        AG_BANKTYPE,
+      </if>
+      <if test="agBankprov != null">
+        AG_BANKPROV,
+      </if>
+      <if test="agBankcity != null">
+        AG_BANKCITY,
+      </if>
+      <if test="agBankdiscount != null">
+        AG_BANKDISCOUNT,
+      </if>
+      <if test="agBankname != null">
+        AG_BANKNAME,
+      </if>
+      <if test="agBankbranch != null">
+        AG_BANKBRANCH,
+      </if>
+      <if test="agBanksimple != null">
+        AG_BANKSIMPLE,
+      </if>
+      <if test="agCreatedate != null">
+        AG_CREATEDATE,
+      </if>
+      <if test="agUpdatedate != null">
+        AG_UPDATEDATE,
+      </if>
+      <if test="agExpends != null">
+        AG_EXPENDS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="agentid != null">
+        #{agentid,jdbcType=INTEGER},
+      </if>
+      <if test="agCardno != null">
+        #{agCardno,jdbcType=VARCHAR},
+      </if>
+      <if test="agName != null">
+        #{agName,jdbcType=VARCHAR},
+      </if>
+      <if test="agBankcode != null">
+        #{agBankcode,jdbcType=VARCHAR},
+      </if>
+      <if test="agBanktype != null">
+        #{agBanktype,jdbcType=VARCHAR},
+      </if>
+      <if test="agBankprov != null">
+        #{agBankprov,jdbcType=VARCHAR},
+      </if>
+      <if test="agBankcity != null">
+        #{agBankcity,jdbcType=VARCHAR},
+      </if>
+      <if test="agBankdiscount != null">
+        #{agBankdiscount,jdbcType=VARCHAR},
+      </if>
+      <if test="agBankname != null">
+        #{agBankname,jdbcType=VARCHAR},
+      </if>
+      <if test="agBankbranch != null">
+        #{agBankbranch,jdbcType=VARCHAR},
+      </if>
+      <if test="agBanksimple != null">
+        #{agBanksimple,jdbcType=VARCHAR},
+      </if>
+      <if test="agCreatedate != null">
+        #{agCreatedate,jdbcType=DATE},
+      </if>
+      <if test="agUpdatedate != null">
+        #{agUpdatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="agExpends != null">
+        #{agExpends,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.store.model.agent.AgentSttle">
+    update pay_agent_settle
+    <set>
+      <if test="agentid != null">
+        AGENTID = #{agentid,jdbcType=INTEGER},
+      </if>
+      <if test="agCardno != null">
+        AG_CARDNO = #{agCardno,jdbcType=VARCHAR},
+      </if>
+      <if test="agName != null">
+        AG_NAME = #{agName,jdbcType=VARCHAR},
+      </if>
+      <if test="agBankcode != null">
+        AG_BANKCODE = #{agBankcode,jdbcType=VARCHAR},
+      </if>
+      <if test="agBanktype != null">
+        AG_BANKTYPE = #{agBanktype,jdbcType=VARCHAR},
+      </if>
+      <if test="agBankprov != null">
+        AG_BANKPROV = #{agBankprov,jdbcType=VARCHAR},
+      </if>
+      <if test="agBankcity != null">
+        AG_BANKCITY = #{agBankcity,jdbcType=VARCHAR},
+      </if>
+      <if test="agBankdiscount != null">
+        AG_BANKDISCOUNT = #{agBankdiscount,jdbcType=VARCHAR},
+      </if>
+      <if test="agBankname != null">
+        AG_BANKNAME = #{agBankname,jdbcType=VARCHAR},
+      </if>
+      <if test="agBankbranch != null">
+        AG_BANKBRANCH = #{agBankbranch,jdbcType=VARCHAR},
+      </if>
+      <if test="agBanksimple != null">
+        AG_BANKSIMPLE = #{agBanksimple,jdbcType=VARCHAR},
+      </if>
+      <if test="agCreatedate != null">
+        AG_CREATEDATE = #{agCreatedate,jdbcType=DATE},
+      </if>
+      <if test="agUpdatedate != null">
+        AG_UPDATEDATE = #{agUpdatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="agExpends != null">
+        AG_EXPENDS = #{agExpends,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.store.model.agent.AgentSttle">
+    update pay_agent_settle
+    set AGENTID = #{agentid,jdbcType=INTEGER},
+      AG_CARDNO = #{agCardno,jdbcType=VARCHAR},
+      AG_NAME = #{agName,jdbcType=VARCHAR},
+      AG_BANKCODE = #{agBankcode,jdbcType=VARCHAR},
+      AG_BANKTYPE = #{agBanktype,jdbcType=VARCHAR},
+      AG_BANKPROV = #{agBankprov,jdbcType=VARCHAR},
+      AG_BANKCITY = #{agBankcity,jdbcType=VARCHAR},
+      AG_BANKDISCOUNT = #{agBankdiscount,jdbcType=VARCHAR},
+      AG_BANKNAME = #{agBankname,jdbcType=VARCHAR},
+      AG_BANKBRANCH = #{agBankbranch,jdbcType=VARCHAR},
+      AG_BANKSIMPLE = #{agBanksimple,jdbcType=VARCHAR},
+      AG_CREATEDATE = #{agCreatedate,jdbcType=DATE},
+      AG_UPDATEDATE = #{agUpdatedate,jdbcType=TIMESTAMP},
+      AG_EXPENDS = #{agExpends,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"></meta>
+		<title>管理员登陆</title>
+		<link rel="stylesheet" href="/static/js/layui/css/layui.css" />
+		<link rel="stylesheet" href="/static/css/manage/login.css" />
+		<script type="text/javascript" src="/static/js/layui/layui.js"></script>
+	</head>
+	<body>
+		<div class="layui-layout-bodyback">
+			<div class="lay-ui-form-login">
+				<form class="layui-form" action="/toLogin" id="loginForm" method="POST">
+					<div class="">
+						<div class="layui-form-login-text">小样ONEC管理系统</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label"><i class="layui-icon layui-icon-cellphone" style="font-size: 42px; color: #1E9FFF;"></i>
+						</label>
+						<div class="layui-input-inline">
+							<input type="text" name="username" placeholder="请输入手机号码" autocomplete="off" class="layui-input" id="username"
+							 lay-verify="username"></input>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label"><i class="layui-icon layui-icon-password" style="font-size: 42px; color: #1E9FFF;"></i>
+						</label>
+						<div class="layui-input-inline">
+							<input type="password" name="password" lay-verify="password" placeholder="请输入登录密码" autocomplete="off" class="layui-input"></input>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label"><i class="layui-icon layui-icon-vercode" style="font-size: 42px; color: #1E9FFF;"></i>
+						</label>
+						<div class="layui-input-inline">
+							<input type="text" name="requestCode" lay-verify="" placeholder="请输入验证码" autocomplete="off" class="layui-input"></input>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label"><i class="layui-icon layui-icon-set" style="font-size: 42px; color: #1E9FFF;"></i>
+						</label>
+						<div class="layui-input-block">
+							<button class="layui-btn"  lay-submit lay-filter="requestApiCode">验证码</button>
+							<button class="layui-btn"  lay-submit lay-filter="requestApiLogin">确认登录</button>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label"></label>
+						<label class="layui-input-inline" th:text="${message}" style="color: red;text-align: left: ;"></label>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		layui.use(['element', 'form'], function() {
+			var form = layui.form,
+				element = layui.element,
+				$ = layui.jquery;
+			// 自定义验证规则
+			form.verify({
+				username: function(value, item) { //value：表单的值、item：表单的DOM对象
+						if (!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)) {
+							return '用户名不能有特殊字符';
+						}
+						if (/(^\_)|(\__)|(\_+$)/.test(value)) {
+							return '用户名首尾不能出现下划线\'_\'';
+						}
+					}
+					//我们既支持上述函数式的方式，也支持下述数组的形式
+					//数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
+					,
+				password: [/^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格'],
+				requestCode: [/^[\S]{4,6}$/, '密码必须6到12位，且不能出现空格']
+			});
+			//监听提交获取短信验证码
+			form.on('submit(requestApiCode)', function(data) {
+				$.ajax({
+					async: true,
+					type: 'post',
+					contentType: "application/json; charset=utf-8",
+					data: JSON.stringify(data.filed.managePhone),
+					dataType: 'json',
+					url: "",
+					success: function(data) {
+						alert("短信发送结果：【" + data.result + "】");
+						smsFlag = true;
+					},
+					error: function(data) {
+						alert("短信发送异常：【" + data.result + "】");
+						smsFlag = false;
+					}
+				});
+				return false; // 不用跳转页面
+			})
+			// form 监听提交
+			form.on('submit(requestApiLogin)', function(data) {
+				console.log("提交的数据是："+JSON.stringify(data.field))
+			})
+		})
+	</script>
+</html>

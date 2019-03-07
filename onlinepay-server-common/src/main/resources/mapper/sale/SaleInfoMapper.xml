@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.store.dao.sale.SaleInfoMapper">
+  <resultMap id="BaseResultMap" type="com.example.store.model.sale.SaleInfo">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="SALENAME" jdbcType="VARCHAR" property="salename" />
+    <result column="SALESHOWNAME" jdbcType="VARCHAR" property="saleshowname" />
+    <result column="CRATEDATE" jdbcType="TIMESTAMP" property="cratedate" />
+    <result column="UPDATEDATE" jdbcType="TIMESTAMP" property="updatedate" />
+    <result column="EXPENDS" jdbcType="VARCHAR" property="expends" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, SALENAME, SALESHOWNAME, CRATEDATE, UPDATEDATE, EXPENDS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pay_sale_info
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pay_sale_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.store.model.sale.SaleInfo">
+    insert into pay_sale_info (ID, SALENAME, SALESHOWNAME, 
+      CRATEDATE, UPDATEDATE, EXPENDS
+      )
+    values (#{id,jdbcType=INTEGER}, #{salename,jdbcType=VARCHAR}, #{saleshowname,jdbcType=VARCHAR}, 
+      #{cratedate,jdbcType=TIMESTAMP}, #{updatedate,jdbcType=TIMESTAMP}, #{expends,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.store.model.sale.SaleInfo">
+    insert into pay_sale_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="salename != null">
+        SALENAME,
+      </if>
+      <if test="saleshowname != null">
+        SALESHOWNAME,
+      </if>
+      <if test="cratedate != null">
+        CRATEDATE,
+      </if>
+      <if test="updatedate != null">
+        UPDATEDATE,
+      </if>
+      <if test="expends != null">
+        EXPENDS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="salename != null">
+        #{salename,jdbcType=VARCHAR},
+      </if>
+      <if test="saleshowname != null">
+        #{saleshowname,jdbcType=VARCHAR},
+      </if>
+      <if test="cratedate != null">
+        #{cratedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedate != null">
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expends != null">
+        #{expends,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.store.model.sale.SaleInfo">
+    update pay_sale_info
+    <set>
+      <if test="salename != null">
+        SALENAME = #{salename,jdbcType=VARCHAR},
+      </if>
+      <if test="saleshowname != null">
+        SALESHOWNAME = #{saleshowname,jdbcType=VARCHAR},
+      </if>
+      <if test="cratedate != null">
+        CRATEDATE = #{cratedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedate != null">
+        UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expends != null">
+        EXPENDS = #{expends,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.store.model.sale.SaleInfo">
+    update pay_sale_info
+    set SALENAME = #{salename,jdbcType=VARCHAR},
+      SALESHOWNAME = #{saleshowname,jdbcType=VARCHAR},
+      CRATEDATE = #{cratedate,jdbcType=TIMESTAMP},
+      UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      EXPENDS = #{expends,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
