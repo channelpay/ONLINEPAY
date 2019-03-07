@@ -1,0 +1,59 @@
+# 设置服务默认端口
+server:
+  port: 9513
+
+# alibaba druid 数据源配置
+spring:
+  profiles:     
+  datasource:
+     master:
+      jdbcUrl: jdbc:mysql://localhost:3306/onlinepay-agent?useUnicode=true&characterEncoding=utf8 ## 解决插入中文乱码问题
+      username: ONEC
+      password: 2112
+      type: com.alibaba.druid.pool.DruidDataSource
+      driverClassName: com.mysql.jdbc.Driver
+      useSSL: false
+     middle:
+      jdbcUrl: jdbc:mysql://localhost:3306/onlinepay-agent?useUnicode=true&characterEncoding=utf8 ## 解决插入中文乱码问题
+      username: ONEC
+      password: 2112
+      #使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+      driverClassName: com.mysql.jdbc.Driver
+      useSSL: false  # 测试不使用证书
+  devtools:
+    restart:
+      enabled: true #热部署生效
+      additional-paths: src/main/java/com
+#  # mvc 配置文件，设置页面  静态文件
+  mvc:
+    static-path-pattern: /static/**
+    view:
+      prefix: classpath:/templates/html/
+      suffix: .html     
+       
+# 模板引擎设置自动缓存为false
+  thymeleaf:
+      cache: false
+      prefix: classpath:/templates/
+      mode: LEGACYHTML5
+
+# springboot jpa 引入
+#  jpa:
+#      database: mysql
+#      show-sql: true
+#      hibernate:
+#        ddl-auto: update
+#        naming:
+#          strategy: org.hibernate.cfg.DefaultComponentSafeNamingStrategy
+#      properties:
+#         hibernate:
+#            dialect: org.hibernate.dialect.MySQL5Dialect
+
+# 配置activemq
+  activemq:
+    broker-url: tcp://127.0.0.1:61616
+    user: admin
+    password: admin
+# redis 数据的配置 
+        

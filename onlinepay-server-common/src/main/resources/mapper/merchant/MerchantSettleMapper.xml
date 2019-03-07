@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.store.dao.merchant.MerchantSettleMapper">
+  <resultMap id="BaseResultMap" type="com.example.store.model.merchant.MerchantSettle">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="MERCHANT_ID" jdbcType="INTEGER" property="merchantId" />
+    <result column="MERCHANT_CARDNO" jdbcType="VARCHAR" property="merchantCardno" />
+    <result column="MERCHANT_NAME" jdbcType="VARCHAR" property="merchantName" />
+    <result column="MERCHANT_BANK_CODE" jdbcType="VARCHAR" property="merchantBankCode" />
+    <result column="MERCHANT_BANK_TYPE" jdbcType="VARCHAR" property="merchantBankType" />
+    <result column="MERCHANT_BANK_NAME" jdbcType="VARCHAR" property="merchantBankName" />
+    <result column="MERCHANT_BANK_BRANCH" jdbcType="VARCHAR" property="merchantBankBranch" />
+    <result column="MERCHANT_BANK_PROV" jdbcType="VARCHAR" property="merchantBankProv" />
+    <result column="MERCHANT_BANK_CITY" jdbcType="VARCHAR" property="merchantBankCity" />
+    <result column="MERCHANT_BANK_DISCOUNT" jdbcType="VARCHAR" property="merchantBankDiscount" />
+    <result column="MERCHANT_BANK_SIMPLE" jdbcType="VARCHAR" property="merchantBankSimple" />
+    <result column="MERCHANT_CREATE_DATE" jdbcType="TIMESTAMP" property="merchantCreateDate" />
+    <result column="MERCHANT_UPDATE_DATE" jdbcType="TIMESTAMP" property="merchantUpdateDate" />
+    <result column="MERCHANT_EXPLENDS" jdbcType="VARCHAR" property="merchantExplends" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, MERCHANT_ID, MERCHANT_CARDNO, MERCHANT_NAME, MERCHANT_BANK_CODE, MERCHANT_BANK_TYPE, 
+    MERCHANT_BANK_NAME, MERCHANT_BANK_BRANCH, MERCHANT_BANK_PROV, MERCHANT_BANK_CITY, 
+    MERCHANT_BANK_DISCOUNT, MERCHANT_BANK_SIMPLE, MERCHANT_CREATE_DATE, MERCHANT_UPDATE_DATE, 
+    MERCHANT_EXPLENDS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pay_merchant_settle
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pay_merchant_settle
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.store.model.merchant.MerchantSettle">
+    insert into pay_merchant_settle (ID, MERCHANT_ID, MERCHANT_CARDNO, 
+      MERCHANT_NAME, MERCHANT_BANK_CODE, MERCHANT_BANK_TYPE, 
+      MERCHANT_BANK_NAME, MERCHANT_BANK_BRANCH, MERCHANT_BANK_PROV, 
+      MERCHANT_BANK_CITY, MERCHANT_BANK_DISCOUNT, 
+      MERCHANT_BANK_SIMPLE, MERCHANT_CREATE_DATE, 
+      MERCHANT_UPDATE_DATE, MERCHANT_EXPLENDS)
+    values (#{id,jdbcType=INTEGER}, #{merchantId,jdbcType=INTEGER}, #{merchantCardno,jdbcType=VARCHAR}, 
+      #{merchantName,jdbcType=VARCHAR}, #{merchantBankCode,jdbcType=VARCHAR}, #{merchantBankType,jdbcType=VARCHAR}, 
+      #{merchantBankName,jdbcType=VARCHAR}, #{merchantBankBranch,jdbcType=VARCHAR}, #{merchantBankProv,jdbcType=VARCHAR}, 
+      #{merchantBankCity,jdbcType=VARCHAR}, #{merchantBankDiscount,jdbcType=VARCHAR}, 
+      #{merchantBankSimple,jdbcType=VARCHAR}, #{merchantCreateDate,jdbcType=TIMESTAMP}, 
+      #{merchantUpdateDate,jdbcType=TIMESTAMP}, #{merchantExplends,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.store.model.merchant.MerchantSettle">
+    insert into pay_merchant_settle
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="merchantId != null">
+        MERCHANT_ID,
+      </if>
+      <if test="merchantCardno != null">
+        MERCHANT_CARDNO,
+      </if>
+      <if test="merchantName != null">
+        MERCHANT_NAME,
+      </if>
+      <if test="merchantBankCode != null">
+        MERCHANT_BANK_CODE,
+      </if>
+      <if test="merchantBankType != null">
+        MERCHANT_BANK_TYPE,
+      </if>
+      <if test="merchantBankName != null">
+        MERCHANT_BANK_NAME,
+      </if>
+      <if test="merchantBankBranch != null">
+        MERCHANT_BANK_BRANCH,
+      </if>
+      <if test="merchantBankProv != null">
+        MERCHANT_BANK_PROV,
+      </if>
+      <if test="merchantBankCity != null">
+        MERCHANT_BANK_CITY,
+      </if>
+      <if test="merchantBankDiscount != null">
+        MERCHANT_BANK_DISCOUNT,
+      </if>
+      <if test="merchantBankSimple != null">
+        MERCHANT_BANK_SIMPLE,
+      </if>
+      <if test="merchantCreateDate != null">
+        MERCHANT_CREATE_DATE,
+      </if>
+      <if test="merchantUpdateDate != null">
+        MERCHANT_UPDATE_DATE,
+      </if>
+      <if test="merchantExplends != null">
+        MERCHANT_EXPLENDS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantCardno != null">
+        #{merchantCardno,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantName != null">
+        #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantBankCode != null">
+        #{merchantBankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantBankType != null">
+        #{merchantBankType,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantBankName != null">
+        #{merchantBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantBankBranch != null">
+        #{merchantBankBranch,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantBankProv != null">
+        #{merchantBankProv,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantBankCity != null">
+        #{merchantBankCity,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantBankDiscount != null">
+        #{merchantBankDiscount,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantBankSimple != null">
+        #{merchantBankSimple,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantCreateDate != null">
+        #{merchantCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merchantUpdateDate != null">
+        #{merchantUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merchantExplends != null">
+        #{merchantExplends,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.store.model.merchant.MerchantSettle">
+    update pay_merchant_settle
+    <set>
+      <if test="merchantId != null">
+        MERCHANT_ID = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantCardno != null">
+        MERCHANT_CARDNO = #{merchantCardno,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantName != null">
+        MERCHANT_NAME = #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantBankCode != null">
+        MERCHANT_BANK_CODE = #{merchantBankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantBankType != null">
+        MERCHANT_BANK_TYPE = #{merchantBankType,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantBankName != null">
+        MERCHANT_BANK_NAME = #{merchantBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantBankBranch != null">
+        MERCHANT_BANK_BRANCH = #{merchantBankBranch,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantBankProv != null">
+        MERCHANT_BANK_PROV = #{merchantBankProv,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantBankCity != null">
+        MERCHANT_BANK_CITY = #{merchantBankCity,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantBankDiscount != null">
+        MERCHANT_BANK_DISCOUNT = #{merchantBankDiscount,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantBankSimple != null">
+        MERCHANT_BANK_SIMPLE = #{merchantBankSimple,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantCreateDate != null">
+        MERCHANT_CREATE_DATE = #{merchantCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merchantUpdateDate != null">
+        MERCHANT_UPDATE_DATE = #{merchantUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merchantExplends != null">
+        MERCHANT_EXPLENDS = #{merchantExplends,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.store.model.merchant.MerchantSettle">
+    update pay_merchant_settle
+    set MERCHANT_ID = #{merchantId,jdbcType=INTEGER},
+      MERCHANT_CARDNO = #{merchantCardno,jdbcType=VARCHAR},
+      MERCHANT_NAME = #{merchantName,jdbcType=VARCHAR},
+      MERCHANT_BANK_CODE = #{merchantBankCode,jdbcType=VARCHAR},
+      MERCHANT_BANK_TYPE = #{merchantBankType,jdbcType=VARCHAR},
+      MERCHANT_BANK_NAME = #{merchantBankName,jdbcType=VARCHAR},
+      MERCHANT_BANK_BRANCH = #{merchantBankBranch,jdbcType=VARCHAR},
+      MERCHANT_BANK_PROV = #{merchantBankProv,jdbcType=VARCHAR},
+      MERCHANT_BANK_CITY = #{merchantBankCity,jdbcType=VARCHAR},
+      MERCHANT_BANK_DISCOUNT = #{merchantBankDiscount,jdbcType=VARCHAR},
+      MERCHANT_BANK_SIMPLE = #{merchantBankSimple,jdbcType=VARCHAR},
+      MERCHANT_CREATE_DATE = #{merchantCreateDate,jdbcType=TIMESTAMP},
+      MERCHANT_UPDATE_DATE = #{merchantUpdateDate,jdbcType=TIMESTAMP},
+      MERCHANT_EXPLENDS = #{merchantExplends,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

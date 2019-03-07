@@ -1,0 +1,51 @@
+@CHARSET "UTF-8";
+
+body {
+	margin: 0px;
+	padding: 0px;
+	background-color: white;
+}
+
+/* div {
+	border: 1px red solid;
+} */
+.layui-layout-bodyback {
+	width: 1600px;
+	height: 560px;
+	margin-top: 80px;
+	margin-left: 120px;
+	padding-top: 40px;
+	background: url("../../image/manage/loginground.jpg") center;
+
+	/* background-position: center 0; */
+	/* background-size: 100% 100%; */
+	/* background-attachment: fixed; */
+}
+
+h2 {
+	text-align: center;
+}
+
+.lay-ui-form-login {
+	position: relative;
+	width: 360px;
+	height: 380px;
+	margin-left: 72%;
+	margin-bottom: 8%;
+	padding-top: 2%;
+	background: white;
+	/*flex 布局*/
+	/* 	display: flex;
+	实现垂直居中
+	align-items: center;
+	实现水平居中
+	justify-content: center; */
+	/* background: url("../../image/manage/loginmanage.jpg"); */
+}
+
+.layui-form-login-text {
+	text-align: center; height : 50px;
+	font-size: 28px;
+	color: #1E9FFF;
+	height: 50px;
+}

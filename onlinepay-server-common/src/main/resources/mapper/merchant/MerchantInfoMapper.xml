@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.store.dao.merchant.MerchantInfoMapper">
+  <resultMap id="BaseResultMap" type="com.example.store.model.merchant.MerchantInfo">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="AGENT_ID" jdbcType="INTEGER" property="agentId" />
+    <result column="MERCHANT_NO" jdbcType="VARCHAR" property="merchantNo" />
+    <result column="MERCHANT_NAME" jdbcType="VARCHAR" property="merchantName" />
+    <result column="MERCHANT_TYPE" jdbcType="VARCHAR" property="merchantType" />
+    <result column="MERCHANT_STATUS" jdbcType="VARCHAR" property="merchantStatus" />
+    <result column="MERCAHNT_PHONE" jdbcType="INTEGER" property="mercahntPhone" />
+    <result column="MERCHANT_EMAIL" jdbcType="VARCHAR" property="merchantEmail" />
+    <result column="MERCHANT_USER" jdbcType="VARCHAR" property="merchantUser" />
+    <result column="MERCHANT_MOBILE" jdbcType="INTEGER" property="merchantMobile" />
+    <result column="MERCHANT_IDCARD_NO" jdbcType="VARCHAR" property="merchantIdcardNo" />
+    <result column="MERCHANT_LICENCE" jdbcType="VARCHAR" property="merchantLicence" />
+    <result column="MERCHANT_PROINCE" jdbcType="VARCHAR" property="merchantProince" />
+    <result column="MERCHANT_CITY" jdbcType="VARCHAR" property="merchantCity" />
+    <result column="MERCHANT_DISCOUNT" jdbcType="VARCHAR" property="merchantDiscount" />
+    <result column="MERCHANT_ADDRESS" jdbcType="VARCHAR" property="merchantAddress" />
+    <result column="MERCHANT_UPDATE" jdbcType="TIMESTAMP" property="merchantUpdate" />
+    <result column="MERCHANT_CREATE" jdbcType="VARCHAR" property="merchantCreate" />
+    <result column="MERCHANT_EXPENDS" jdbcType="VARCHAR" property="merchantExpends" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, AGENT_ID, MERCHANT_NO, MERCHANT_NAME, MERCHANT_TYPE, MERCHANT_STATUS, MERCAHNT_PHONE, 
+    MERCHANT_EMAIL, MERCHANT_USER, MERCHANT_MOBILE, MERCHANT_IDCARD_NO, MERCHANT_LICENCE, 
+    MERCHANT_PROINCE, MERCHANT_CITY, MERCHANT_DISCOUNT, MERCHANT_ADDRESS, MERCHANT_UPDATE, 
+    MERCHANT_CREATE, MERCHANT_EXPENDS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pay_merchant_info
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pay_merchant_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.store.model.merchant.MerchantInfo">
+    insert into pay_merchant_info (ID, AGENT_ID, MERCHANT_NO, 
+      MERCHANT_NAME, MERCHANT_TYPE, MERCHANT_STATUS, 
+      MERCAHNT_PHONE, MERCHANT_EMAIL, MERCHANT_USER, 
+      MERCHANT_MOBILE, MERCHANT_IDCARD_NO, MERCHANT_LICENCE, 
+      MERCHANT_PROINCE, MERCHANT_CITY, MERCHANT_DISCOUNT, 
+      MERCHANT_ADDRESS, MERCHANT_UPDATE, MERCHANT_CREATE, 
+      MERCHANT_EXPENDS)
+    values (#{id,jdbcType=INTEGER}, #{agentId,jdbcType=INTEGER}, #{merchantNo,jdbcType=VARCHAR}, 
+      #{merchantName,jdbcType=VARCHAR}, #{merchantType,jdbcType=VARCHAR}, #{merchantStatus,jdbcType=VARCHAR}, 
+      #{mercahntPhone,jdbcType=INTEGER}, #{merchantEmail,jdbcType=VARCHAR}, #{merchantUser,jdbcType=VARCHAR}, 
+      #{merchantMobile,jdbcType=INTEGER}, #{merchantIdcardNo,jdbcType=VARCHAR}, #{merchantLicence,jdbcType=VARCHAR}, 
+      #{merchantProince,jdbcType=VARCHAR}, #{merchantCity,jdbcType=VARCHAR}, #{merchantDiscount,jdbcType=VARCHAR}, 
+      #{merchantAddress,jdbcType=VARCHAR}, #{merchantUpdate,jdbcType=TIMESTAMP}, #{merchantCreate,jdbcType=VARCHAR}, 
+      #{merchantExpends,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.store.model.merchant.MerchantInfo">
+    insert into pay_merchant_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="agentId != null">
+        AGENT_ID,
+      </if>
+      <if test="merchantNo != null">
+        MERCHANT_NO,
+      </if>
+      <if test="merchantName != null">
+        MERCHANT_NAME,
+      </if>
+      <if test="merchantType != null">
+        MERCHANT_TYPE,
+      </if>
+      <if test="merchantStatus != null">
+        MERCHANT_STATUS,
+      </if>
+      <if test="mercahntPhone != null">
+        MERCAHNT_PHONE,
+      </if>
+      <if test="merchantEmail != null">
+        MERCHANT_EMAIL,
+      </if>
+      <if test="merchantUser != null">
+        MERCHANT_USER,
+      </if>
+      <if test="merchantMobile != null">
+        MERCHANT_MOBILE,
+      </if>
+      <if test="merchantIdcardNo != null">
+        MERCHANT_IDCARD_NO,
+      </if>
+      <if test="merchantLicence != null">
+        MERCHANT_LICENCE,
+      </if>
+      <if test="merchantProince != null">
+        MERCHANT_PROINCE,
+      </if>
+      <if test="merchantCity != null">
+        MERCHANT_CITY,
+      </if>
+      <if test="merchantDiscount != null">
+        MERCHANT_DISCOUNT,
+      </if>
+      <if test="merchantAddress != null">
+        MERCHANT_ADDRESS,
+      </if>
+      <if test="merchantUpdate != null">
+        MERCHANT_UPDATE,
+      </if>
+      <if test="merchantCreate != null">
+        MERCHANT_CREATE,
+      </if>
+      <if test="merchantExpends != null">
+        MERCHANT_EXPENDS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="agentId != null">
+        #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantNo != null">
+        #{merchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantName != null">
+        #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantType != null">
+        #{merchantType,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantStatus != null">
+        #{merchantStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="mercahntPhone != null">
+        #{mercahntPhone,jdbcType=INTEGER},
+      </if>
+      <if test="merchantEmail != null">
+        #{merchantEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantUser != null">
+        #{merchantUser,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantMobile != null">
+        #{merchantMobile,jdbcType=INTEGER},
+      </if>
+      <if test="merchantIdcardNo != null">
+        #{merchantIdcardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantLicence != null">
+        #{merchantLicence,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantProince != null">
+        #{merchantProince,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantCity != null">
+        #{merchantCity,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantDiscount != null">
+        #{merchantDiscount,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantAddress != null">
+        #{merchantAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantUpdate != null">
+        #{merchantUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merchantCreate != null">
+        #{merchantCreate,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantExpends != null">
+        #{merchantExpends,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.store.model.merchant.MerchantInfo">
+    update pay_merchant_info
+    <set>
+      <if test="agentId != null">
+        AGENT_ID = #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantNo != null">
+        MERCHANT_NO = #{merchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantName != null">
+        MERCHANT_NAME = #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantType != null">
+        MERCHANT_TYPE = #{merchantType,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantStatus != null">
+        MERCHANT_STATUS = #{merchantStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="mercahntPhone != null">
+        MERCAHNT_PHONE = #{mercahntPhone,jdbcType=INTEGER},
+      </if>
+      <if test="merchantEmail != null">
+        MERCHANT_EMAIL = #{merchantEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantUser != null">
+        MERCHANT_USER = #{merchantUser,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantMobile != null">
+        MERCHANT_MOBILE = #{merchantMobile,jdbcType=INTEGER},
+      </if>
+      <if test="merchantIdcardNo != null">
+        MERCHANT_IDCARD_NO = #{merchantIdcardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantLicence != null">
+        MERCHANT_LICENCE = #{merchantLicence,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantProince != null">
+        MERCHANT_PROINCE = #{merchantProince,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantCity != null">
+        MERCHANT_CITY = #{merchantCity,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantDiscount != null">
+        MERCHANT_DISCOUNT = #{merchantDiscount,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantAddress != null">
+        MERCHANT_ADDRESS = #{merchantAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantUpdate != null">
+        MERCHANT_UPDATE = #{merchantUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merchantCreate != null">
+        MERCHANT_CREATE = #{merchantCreate,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantExpends != null">
+        MERCHANT_EXPENDS = #{merchantExpends,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.store.model.merchant.MerchantInfo">
+    update pay_merchant_info
+    set AGENT_ID = #{agentId,jdbcType=INTEGER},
+      MERCHANT_NO = #{merchantNo,jdbcType=VARCHAR},
+      MERCHANT_NAME = #{merchantName,jdbcType=VARCHAR},
+      MERCHANT_TYPE = #{merchantType,jdbcType=VARCHAR},
+      MERCHANT_STATUS = #{merchantStatus,jdbcType=VARCHAR},
+      MERCAHNT_PHONE = #{mercahntPhone,jdbcType=INTEGER},
+      MERCHANT_EMAIL = #{merchantEmail,jdbcType=VARCHAR},
+      MERCHANT_USER = #{merchantUser,jdbcType=VARCHAR},
+      MERCHANT_MOBILE = #{merchantMobile,jdbcType=INTEGER},
+      MERCHANT_IDCARD_NO = #{merchantIdcardNo,jdbcType=VARCHAR},
+      MERCHANT_LICENCE = #{merchantLicence,jdbcType=VARCHAR},
+      MERCHANT_PROINCE = #{merchantProince,jdbcType=VARCHAR},
+      MERCHANT_CITY = #{merchantCity,jdbcType=VARCHAR},
+      MERCHANT_DISCOUNT = #{merchantDiscount,jdbcType=VARCHAR},
+      MERCHANT_ADDRESS = #{merchantAddress,jdbcType=VARCHAR},
+      MERCHANT_UPDATE = #{merchantUpdate,jdbcType=TIMESTAMP},
+      MERCHANT_CREATE = #{merchantCreate,jdbcType=VARCHAR},
+      MERCHANT_EXPENDS = #{merchantExpends,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.store.model.merchant.MerchantInfo">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="AGENT_ID" jdbcType="INTEGER" property="agentId" />
+    <result column="MERCHANT_NO" jdbcType="VARCHAR" property="merchantNo" />
+    <result column="MERCHANT_NAME" jdbcType="VARCHAR" property="merchantName" />
+    <result column="MERCHANT_TYPE" jdbcType="VARCHAR" property="merchantType" />
+    <result column="MERCHANT_STATUS" jdbcType="VARCHAR" property="merchantStatus" />
+    <result column="MERCAHNT_PHONE" jdbcType="INTEGER" property="mercahntPhone" />
+    <result column="MERCHANT_EMAIL" jdbcType="VARCHAR" property="merchantEmail" />
+    <result column="MERCHANT_USER" jdbcType="VARCHAR" property="merchantUser" />
+    <result column="MERCHANT_MOBILE" jdbcType="INTEGER" property="merchantMobile" />
+    <result column="MERCHANT_IDCARD_NO" jdbcType="VARCHAR" property="merchantIdcardNo" />
+    <result column="MERCHANT_LICENCE" jdbcType="VARCHAR" property="merchantLicence" />
+    <result column="MERCHANT_PROINCE" jdbcType="VARCHAR" property="merchantProince" />
+    <result column="MERCHANT_CITY" jdbcType="VARCHAR" property="merchantCity" />
+    <result column="MERCHANT_DISCOUNT" jdbcType="VARCHAR" property="merchantDiscount" />
+    <result column="MERCHANT_ADDRESS" jdbcType="VARCHAR" property="merchantAddress" />
+    <result column="MERCHANT_UPDATE" jdbcType="TIMESTAMP" property="merchantUpdate" />
+    <result column="MERCHANT_CREATE" jdbcType="VARCHAR" property="merchantCreate" />
+    <result column="MERCHANT_EXPENDS" jdbcType="VARCHAR" property="merchantExpends" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, AGENT_ID, MERCHANT_NO, MERCHANT_NAME, MERCHANT_TYPE, MERCHANT_STATUS, MERCAHNT_PHONE, 
+    MERCHANT_EMAIL, MERCHANT_USER, MERCHANT_MOBILE, MERCHANT_IDCARD_NO, MERCHANT_LICENCE, 
+    MERCHANT_PROINCE, MERCHANT_CITY, MERCHANT_DISCOUNT, MERCHANT_ADDRESS, MERCHANT_UPDATE, 
+    MERCHANT_CREATE, MERCHANT_EXPENDS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pay_merchant_info
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pay_merchant_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.store.model.merchant.MerchantInfo">
+    insert into pay_merchant_info (ID, AGENT_ID, MERCHANT_NO, 
+      MERCHANT_NAME, MERCHANT_TYPE, MERCHANT_STATUS, 
+      MERCAHNT_PHONE, MERCHANT_EMAIL, MERCHANT_USER, 
+      MERCHANT_MOBILE, MERCHANT_IDCARD_NO, MERCHANT_LICENCE, 
+      MERCHANT_PROINCE, MERCHANT_CITY, MERCHANT_DISCOUNT, 
+      MERCHANT_ADDRESS, MERCHANT_UPDATE, MERCHANT_CREATE, 
+      MERCHANT_EXPENDS)
+    values (#{id,jdbcType=INTEGER}, #{agentId,jdbcType=INTEGER}, #{merchantNo,jdbcType=VARCHAR}, 
+      #{merchantName,jdbcType=VARCHAR}, #{merchantType,jdbcType=VARCHAR}, #{merchantStatus,jdbcType=VARCHAR}, 
+      #{mercahntPhone,jdbcType=INTEGER}, #{merchantEmail,jdbcType=VARCHAR}, #{merchantUser,jdbcType=VARCHAR}, 
+      #{merchantMobile,jdbcType=INTEGER}, #{merchantIdcardNo,jdbcType=VARCHAR}, #{merchantLicence,jdbcType=VARCHAR}, 
+      #{merchantProince,jdbcType=VARCHAR}, #{merchantCity,jdbcType=VARCHAR}, #{merchantDiscount,jdbcType=VARCHAR}, 
+      #{merchantAddress,jdbcType=VARCHAR}, #{merchantUpdate,jdbcType=TIMESTAMP}, #{merchantCreate,jdbcType=VARCHAR}, 
+      #{merchantExpends,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.store.model.merchant.MerchantInfo">
+    insert into pay_merchant_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="agentId != null">
+        AGENT_ID,
+      </if>
+      <if test="merchantNo != null">
+        MERCHANT_NO,
+      </if>
+      <if test="merchantName != null">
+        MERCHANT_NAME,
+      </if>
+      <if test="merchantType != null">
+        MERCHANT_TYPE,
+      </if>
+      <if test="merchantStatus != null">
+        MERCHANT_STATUS,
+      </if>
+      <if test="mercahntPhone != null">
+        MERCAHNT_PHONE,
+      </if>
+      <if test="merchantEmail != null">
+        MERCHANT_EMAIL,
+      </if>
+      <if test="merchantUser != null">
+        MERCHANT_USER,
+      </if>
+      <if test="merchantMobile != null">
+        MERCHANT_MOBILE,
+      </if>
+      <if test="merchantIdcardNo != null">
+        MERCHANT_IDCARD_NO,
+      </if>
+      <if test="merchantLicence != null">
+        MERCHANT_LICENCE,
+      </if>
+      <if test="merchantProince != null">
+        MERCHANT_PROINCE,
+      </if>
+      <if test="merchantCity != null">
+        MERCHANT_CITY,
+      </if>
+      <if test="merchantDiscount != null">
+        MERCHANT_DISCOUNT,
+      </if>
+      <if test="merchantAddress != null">
+        MERCHANT_ADDRESS,
+      </if>
+      <if test="merchantUpdate != null">
+        MERCHANT_UPDATE,
+      </if>
+      <if test="merchantCreate != null">
+        MERCHANT_CREATE,
+      </if>
+      <if test="merchantExpends != null">
+        MERCHANT_EXPENDS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="agentId != null">
+        #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantNo != null">
+        #{merchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantName != null">
+        #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantType != null">
+        #{merchantType,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantStatus != null">
+        #{merchantStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="mercahntPhone != null">
+        #{mercahntPhone,jdbcType=INTEGER},
+      </if>
+      <if test="merchantEmail != null">
+        #{merchantEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantUser != null">
+        #{merchantUser,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantMobile != null">
+        #{merchantMobile,jdbcType=INTEGER},
+      </if>
+      <if test="merchantIdcardNo != null">
+        #{merchantIdcardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantLicence != null">
+        #{merchantLicence,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantProince != null">
+        #{merchantProince,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantCity != null">
+        #{merchantCity,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantDiscount != null">
+        #{merchantDiscount,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantAddress != null">
+        #{merchantAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantUpdate != null">
+        #{merchantUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merchantCreate != null">
+        #{merchantCreate,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantExpends != null">
+        #{merchantExpends,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.store.model.merchant.MerchantInfo">
+    update pay_merchant_info
+    <set>
+      <if test="agentId != null">
+        AGENT_ID = #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantNo != null">
+        MERCHANT_NO = #{merchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantName != null">
+        MERCHANT_NAME = #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantType != null">
+        MERCHANT_TYPE = #{merchantType,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantStatus != null">
+        MERCHANT_STATUS = #{merchantStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="mercahntPhone != null">
+        MERCAHNT_PHONE = #{mercahntPhone,jdbcType=INTEGER},
+      </if>
+      <if test="merchantEmail != null">
+        MERCHANT_EMAIL = #{merchantEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantUser != null">
+        MERCHANT_USER = #{merchantUser,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantMobile != null">
+        MERCHANT_MOBILE = #{merchantMobile,jdbcType=INTEGER},
+      </if>
+      <if test="merchantIdcardNo != null">
+        MERCHANT_IDCARD_NO = #{merchantIdcardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantLicence != null">
+        MERCHANT_LICENCE = #{merchantLicence,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantProince != null">
+        MERCHANT_PROINCE = #{merchantProince,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantCity != null">
+        MERCHANT_CITY = #{merchantCity,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantDiscount != null">
+        MERCHANT_DISCOUNT = #{merchantDiscount,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantAddress != null">
+        MERCHANT_ADDRESS = #{merchantAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantUpdate != null">
+        MERCHANT_UPDATE = #{merchantUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merchantCreate != null">
+        MERCHANT_CREATE = #{merchantCreate,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantExpends != null">
+        MERCHANT_EXPENDS = #{merchantExpends,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.store.model.merchant.MerchantInfo">
+    update pay_merchant_info
+    set AGENT_ID = #{agentId,jdbcType=INTEGER},
+      MERCHANT_NO = #{merchantNo,jdbcType=VARCHAR},
+      MERCHANT_NAME = #{merchantName,jdbcType=VARCHAR},
+      MERCHANT_TYPE = #{merchantType,jdbcType=VARCHAR},
+      MERCHANT_STATUS = #{merchantStatus,jdbcType=VARCHAR},
+      MERCAHNT_PHONE = #{mercahntPhone,jdbcType=INTEGER},
+      MERCHANT_EMAIL = #{merchantEmail,jdbcType=VARCHAR},
+      MERCHANT_USER = #{merchantUser,jdbcType=VARCHAR},
+      MERCHANT_MOBILE = #{merchantMobile,jdbcType=INTEGER},
+      MERCHANT_IDCARD_NO = #{merchantIdcardNo,jdbcType=VARCHAR},
+      MERCHANT_LICENCE = #{merchantLicence,jdbcType=VARCHAR},
+      MERCHANT_PROINCE = #{merchantProince,jdbcType=VARCHAR},
+      MERCHANT_CITY = #{merchantCity,jdbcType=VARCHAR},
+      MERCHANT_DISCOUNT = #{merchantDiscount,jdbcType=VARCHAR},
+      MERCHANT_ADDRESS = #{merchantAddress,jdbcType=VARCHAR},
+      MERCHANT_UPDATE = #{merchantUpdate,jdbcType=TIMESTAMP},
+      MERCHANT_CREATE = #{merchantCreate,jdbcType=VARCHAR},
+      MERCHANT_EXPENDS = #{merchantExpends,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
