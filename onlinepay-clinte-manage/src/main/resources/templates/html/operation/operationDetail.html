@@ -19,33 +19,27 @@
 
         <script type="text/html" id="toolbarOperation">
             <div class="layui-btn-container">
-                <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+                <button class="layui-btn layui-btn-sm" lay-event="addOperation">新增员工信息</button>
                 <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
                 <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
             </div>
         </script>
 
-        <script type="text/html" id="toolbarEdit">
-            <a class="layui-btn layui-btn-xs" lay-event="edit">冻结</a>
-            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">解冻</a>
-        </script>
-
-        <script type="text/html" id="checkboxStatus">
+        <script type="text/html" id="switchUser">
             <!-- 这里的 checked 的状态只是演示 -->
-            <input type="checkbox" name="lock" value="{{d.id}}" title="锁定" lay-filter="lockDemo" {{ d.id == 10006 ? 'checked' : '' }}>
+            <input type="checkbox" name="userStatus" value="{{d.userStatus}}" id="{{d.id}}" lay-skin="switch" lay-text="冻结|正常" lay-filter="operationFilter" {{ d.userStatus =='FREEZE' ? 'checked' : '' }}>
         </script>
-
     </div>
     <!--此处引入底部渲染内容  -->
     <div th:replace="html/fragments/footerMenu ::footerMenu"></div>
 </div>
 <script type="text/javascript" th:inline="none"> /* 解决：Could not parse as expression: th:inline="none""*/
-    layui.use(['element', 'table'], function() {
-        var form = layui.form,
-            table = layui.table,
-            $ = layui.jquery;
+    layui.use(['element', 'table' ,'layer'], function() {
+        var $ = layui.jquery, form = layui.form, table = layui.table, layer = layui.layer;
+
         /* 展示用户数据表*/
         table.render({
+            id: 'operationDetail',
             elem: '#operationDetail',
             url: '/operation/getAllOperation',
             toolbar: '#toolbarOperation',
@@ -60,7 +54,7 @@
                 {field: 'userCreateDate', title: '用户创建日期', width: 150},
                 {field: 'userUpdateDate', title: '用户修改日期', width: 150},
                 {field: 'userStatus', title: '用户状态', width: 150},
-                {field:'lock', title:'是否冻结', width:110, templet: '#checkboxTpl', unresize: true}
+                {field: 'lock', title:'是否冻结', width:110, toolbar: '#switchUser', unresize: true}
             ]]
             // data: [{
             //     "id": "1000"
@@ -73,6 +67,71 @@
             //     ,"userStatus": "userStatus"
             // }]
 
+        });
+        /* 监听冻结操作*/
+            form.on('switch(operationFilter)',function(obj){
+            var layEvent = obj.event;// 获得提交事件
+            alert("获取到的id："+ this.id +"获取的值：" + this.value+"获取的名称："+this.name+"获取到的elem:"+obj.elem.checked +"此时的obj为：" + this);
+            $.ajax({
+                async: true,
+                type: 'post',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(this),
+                dataType: 'json',
+                url: "/operation/updateOperationStatus",
+                success: function(result) {
+
+                },
+                error: function(result) {
+
+                }
+            });
+            layer.alert("获取的数据"+obj.switchData)
+
+            return false; // 不用跳转页面
+        })
+        /* 监听头部工具栏事件*/
+        table.on('toolbar(operationDetail)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch(obj.event){
+                case 'addOperation': /* 弹框添加用户*/
+                    var data = checkStatus.data;
+                    layer.alert(JSON.stringify(data));
+                    layer.open({
+                        type: 2
+                        , title: "运营成员添加"
+                        , closeBtn: false
+                        , area: ['720px', '680px']
+                        , shade: 0
+                        , id: 'LAY_layuipro' //设定一个id，防止重复弹出
+                        , btn: ['取消添加']
+                        , btnAlign: 'c'
+                        , moveType: 1 //拖拽模式，0或者1
+                        , content: '/common/operation/addOperation'
+                    });
+                    break;
+                case 'getCheckLength':
+                    var data = checkStatus.data;
+                    alert(data);
+                    layer.msg('选中了：'+ data.length + ' 个');
+                    break;
+                case 'isAll':
+                    layer.msg(checkStatus.isAll ? '全选': '未全选');
+                    break;
+            };
+        });
+
+        /* 触发弹框事件*/
+        var active = {
+            addOperation: function(){ /* 添加员工信息*/
+
+            },
+
+        }
+        /* 触发点击事件*/
+        $('.layui-btn-container .layui-btn .layui-btn-sm').on('click', function(){
+            var othis = $(this), method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
         });
     })
 </script>

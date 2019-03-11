@@ -7,4 +7,6 @@ import java.util.List;
 public interface OperationService {
 
     List<UserInfo> findAllOperation();
+
+    boolean updateOperation(UserInfo userInfo);
 }

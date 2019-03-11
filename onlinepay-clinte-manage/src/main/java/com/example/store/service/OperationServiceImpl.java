@@ -11,7 +11,14 @@ public class OperationServiceImpl extends BaseService implements  OperationServi
 
     @Override
     public List<UserInfo> findAllOperation() {
-
         return  userInfoMapper.selectAllUser();
+    }
+
+    @Override
+    public boolean updateOperation(UserInfo userInfo) {
+        if(1==userInfoMapper.updateByPrimaryKey(userInfo)){
+            return true;
+        }
+        return false;
     }
 }
